@@ -7,7 +7,9 @@
     "tailwind": "npx tailwindcss -i ./app/view/css/input.css -o ./app/view/css/output.css --watch",
     "dev": "npx parcel watch app/view/login.html",
     "webview": "python app/view/executavel.py",
-    "ultra-mega-combo-secreto-de-facil_execucao": "npx tailwindcss -i ./app/view/css/input.css -o ./app/view/css/output.css --watch & npx parcel watch app/view/login.html & python app/view/executavel.py"
+    "z": "npx tailwindcss -i ./app/view/css/input.css -o ./app/view/css/output.css --watch & npx parcel watch app/view/login.html & python app/view/executavel.py",
+    "x": "npx tailwindcss -i ./app/view/css/input.css -o ./app/view/css/output.css --watch & npx parcel watch app/view/login.html & npm run uvicorn -w @nexus/backend & python app/view/executavel.py",
+    "api": "npm run uvicorn -w @nexus/backend & python app/view/executavel.py"
   },
   "dependencies": {
     "react": "^18.2.0",

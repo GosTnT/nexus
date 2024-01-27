@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 desktop_env
-
+all_env
 __pycache__
 # C extensions
 *.so
@@ -22,6 +22,7 @@ node_modules
 dist
 dist-ssr
 *.local
+linux_all.txt
 
 # Editor directories and files
 .vscode/*

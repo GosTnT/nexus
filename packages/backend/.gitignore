@@ -13,7 +13,7 @@ logs
 *.log
 npm-debug.log*
 nexusenv
-myenv
+my_env
 # Dependências
 node_modules/
 npm-debug.log

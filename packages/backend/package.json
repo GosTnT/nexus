@@ -5,4 +5,5 @@
     "generate": "python models/db_connection.py && python models/users_methods.py",
     "dev": "uvicorn controllers.main:app --reload"
   }
-cla
+}
+

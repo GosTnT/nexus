@@ -1,13 +1,14 @@
-from .db_connection import connect_to_db
+from .db_connection import DbConfigurations
 from .my_orm import boosters, users, orders
 
 from sqlalchemy.exc import SQLAlchemyError
 
 register_randoms = {"user": "fodase", "pass": "fodase"}
+db = DbConfigurations
 
 
 def register_in_db(username, password):
-    session = connect_to_db()
+    session = db.connect_to_db()
     if session:
         try:
             booster_1 = boosters(login=username, password=password)

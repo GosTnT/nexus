@@ -10,23 +10,16 @@ load_dotenv()
 class DbConfigurations:
     def __init__(
         self,
-        db_user,
-        db_password,
-        db_host,
-        db_name,
-        engine,
-        default_port,
-        test_port,
         echo=True,
     ):
         # Verifica se as variáveis de ambiente estão definidas
-        self.db_user = os.getenv("DB_USER", db_user)
-        self.db_password = os.getenv("DB_PASSWORD", db_password)
-        self.db_host = os.getenv("DB_HOST", db_host)
-        self.db_name = os.getenv("DB_NAME", db_name)
+        self.db_user = os.getenv("DB_USER")
+        self.db_password = os.getenv("DB_PASSWORD")
+        self.db_host = os.getenv("DB_HOST")
+        self.db_name = os.getenv("DB_NAME")
         self.echo = True
-        self.default_port = os.getenv("DB_DEFAULT_PORT", default_port)
-        self.test_port = os.getenv("DB_TEST_PORT", test_port)
+        self.default_port = os.getenv("DB_DEFAULT_PORT")
+        self.test_port = os.getenv("DB_TEST_PORT")
 
         def create_main_db_engine(self):
             connection_string = f"postgresql+psycopg2://{self.db_user}:{self.db_password}@{self.db_host}:{self.default_port}/{self.db_name}"  # NOQA
@@ -66,6 +59,6 @@ class DbManagements:
 
 if __name__ == "__main__":
     with db.connect_to_db() as session:
-        db_management = DbManagements()
-        result = db_management.create_tables(db.create_main_db_engine)
+        db_mg = DbManagements()
+        result = db_mg.create_tables(db.create_main_db_engine)
         print(result)

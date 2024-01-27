@@ -1,14 +1,15 @@
 from .my_orm import users, boosters, orders
-from .db_connection import connect_to_db
+from .db_connection import DbConfigurations
 from sqlalchemy.exc import SQLAlchemyError
-
 from contextlib import contextmanager
+
+db = DbConfigurations
 
 
 @contextmanager
 def session_scope():
     """Provide a transactional scope around a series of operations."""
-    session = connect_to_db()
+    session = db.connect_to_db()
     try:
         yield session
         session.commit()

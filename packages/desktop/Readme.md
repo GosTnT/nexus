@@ -1,9 +1,10 @@
 # Como rodar o site 
 
  Versões que estou usando:
-- npm: 10.3.0
+- node: 20.11.0
+- npm: 10.2.4
 - pip: 23.3.2
-- python: 3.11.6
+- python: 3.12.1
 
 
 > Todos os comandos devem ser feitos da pasta raiz
@@ -13,7 +14,7 @@
 
 ---
 
-##### Builda o CSS na pasta app/view/css
+##### Builda o CSS na pasta app/view/css 
 #### `npm run tailwind` 
 
 ---
@@ -24,3 +25,5 @@
 ##### Roda o pywebview usando os arquivos buildados acima
 
 #### `npm run webview`
+
+

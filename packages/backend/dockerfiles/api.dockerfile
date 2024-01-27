@@ -5,10 +5,10 @@ FROM python:3.12.1-bookworm
 WORKDIR /backend
 
 # Copia o arquivo requirements.txt para o contêiner
-COPY api_requirements.txt .
+COPY requirements.txt .
 
 # Instala os pacotes listados no requirements.txt
-RUN pip install -r api_requirements.txt
+RUN pip install -r requirements.txt
 
 # Copia todo o conteúdo do diretório local para o diretório de trabalho no contêiner
 COPY . .

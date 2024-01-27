@@ -3,7 +3,7 @@ import { NavigationMenuDemo } from './NavigationMenuDemo'
 import './output.css'
 import { createRoot } from 'react-dom/client';
 import { Botaozin } from '@libs/components';
-const app = document.getElementById('root')!;
+const app = document.getElementById('root') as HTMLElement;
 const root = createRoot(app);
 
 root.render(

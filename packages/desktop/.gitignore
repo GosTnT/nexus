@@ -7,7 +7,7 @@ desktop_env
 __pycache__
 # C extensions
 *.so
-package-lock.json
+linux_requirements.txt
 .parcel-cache
 # Logs
 logs

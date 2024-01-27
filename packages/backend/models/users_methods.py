@@ -3,7 +3,6 @@ from .my_orm import boosters, users, orders
 
 from sqlalchemy.exc import SQLAlchemyError
 
-register_randoms = {"user": "fodase", "pass": "fodase"}
 db = DbConfigurations
 
 
@@ -23,7 +22,7 @@ def register_in_db(username, password):
 
 def delete_user(user):
     # delete booster, user , where id == ${{user,booster}.id}
-    with connect_to_db() as session:
+    with db.connect_to_db() as session:
         session.query(user).filter(user == user).delete()
 
 

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import sessionmaker
-from user_model import Base, User
+from .user_model import Base, User
 import os
 
 

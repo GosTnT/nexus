@@ -1,0 +1,26 @@
+{
+  "name": "@nexus/desktop",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "tailwind": "npx tailwindcss -i ./app/view/css/input.css -o ./app/view/css/output.css --watch",
+    "dev": "npx parcel watch app/view/src/login.html --lazy",
+    "webview": "python app/view/src/executavel.py"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "jquery": "^3.7.1",
+    "parcel": "^2.11.0",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2"
+  }
+}

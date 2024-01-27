@@ -1,11 +1,10 @@
-import sys
 import os
 import webview
 
 
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from model.db_connection import check_credentials  # noqa E402
+from db_connection import check_credentials  # noqa E402
 
 
 def get_entrypoint():

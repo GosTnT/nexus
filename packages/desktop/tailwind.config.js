@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/view/src/components/*.{js,jsx,ts,tsx}", // Fixing the path and adding recursive '**'
+    "./app/view/src/*.{js,jsx,ts,tsx}", // Fixing the path and adding recursive '**'
     "./app/view/src/*.html", // Fixing the path and using a single asterisk for HTML files in the root directory
   ],
   theme: {

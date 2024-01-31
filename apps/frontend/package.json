@@ -11,7 +11,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@libs/components": "^0.0.0",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
@@ -25,7 +24,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.13",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",

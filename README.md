@@ -10,6 +10,8 @@ e uma manutenção mais facil de todo o ambiente.
 - O desenvolvimento deve ser o mais otimizado possivel,e portanto evitar rescrever código desnecessáriamente,
 e portanto ser baseia em ter componentes e modulos reutilizáveis
 
+
+
 ### Backend
 ##### Python
 
@@ -32,7 +34,13 @@ Para fazer isso ele utiliza os arquivos buildados do frontend como o tailwind e 
 ```ǹpm run webview```
 
 > Agora a aplicação deve abrir já com hot reload funcionando
-> Caso necessário tambem pode usar ```npm run api``` para subir banco e api rest
+
+- <span style="color:LightGray">Mesma coisa que o website </span><br>
+- <span style="color:LightGray">Pywebview</span><br>
+
+> <strong>Pywebview</strong> é usado para seu criar um programa Python com tecnologia de front end ```Electron do python ?```
+
+> A aplicação <strong>desktop</strong> faz os boosters logarem automatico e outras funcionalidades 
 
 ### Web 
 
@@ -46,17 +54,9 @@ Para fazer isso ele utiliza os arquivos buildados do frontend como o tailwind e 
 prontos que poupam a necessidade de fazer tudo do zero.É recomendavel adaptar os componentes e coloca-los na pasta de componentes
 por conta do turborepo, é possivel importa-los sem precisar builda-los toda vez que houver uma nova mudança.
 
-#### Desktop
-
-- <span style="color:LightGray">Mesma coisa que o website </span><br>
-- <span style="color:LightGray">Pywebview</span><br>
-
-> <strong>Pywebview</strong> é usado para seu criar um programa Python com tecnologia de front end ```Electron do python ?```
-
-> A aplicação <strong>desktop</strong> faz os boosters logarem automatico e outras funcionalidades 
-
 
 ## Docker
+- Antes é necessário criar um .env no repositório root e preencher com os dados do .env.example
 O ambiente de desenvolvimento é projetado para funcionar com [Docker composer](https://docs.docker.com/compose/)
 apartir de qualquer pasta do arquivo é possivel usar ```npm run dev``` no terminal, e assim subir a api e o banco
 de forma instantanea

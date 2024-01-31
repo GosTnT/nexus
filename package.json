@@ -10,7 +10,11 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "@types/node": "^20.11.13",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33",
     "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.1",
     "turbo": "latest"
   },
   "engines": {

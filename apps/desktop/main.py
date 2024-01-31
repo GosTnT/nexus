@@ -2,15 +2,14 @@ import os
 import webview
 
 
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 
 def get_entrypoint():
     def exists(path):
         return os.path.exists(os.path.join(os.path.dirname(__file__), path))
 
-    if exists("../../dist/login.html"):  # unfrozen development
-        return "../../dist/login.html"
+    if exists("./dist/login.html"):  # unfrozen development
+        return "./dist/login.html"
 
 
 home_page = get_entrypoint()
@@ -21,15 +20,15 @@ class WindowController:
         self.login_window = None
         self.home_window = None
 
-    # def checkCredentials(self, username, password):
-    #     result = check_credentials(username, password)
+    def checkCredentials(self, username, password):
+        result = check_credentials(username, password)
 
-    #     if result["status"] == "success":
-    #         self.openHomepage(username)
-    #         if self.login_window:
-    #             self.login_window.destroy()
+        if result["status"] == "success":
+            self.openHomepage(username)
+            if self.login_window:
+                self.login_window.destroy()
 
-    #     return result
+        return result
 
     def openHomepage(self, BoosterID):
         if self.home_window:
@@ -42,6 +41,7 @@ class WindowController:
             height=600,
             resizable=False,
             frameless=True,
+            debug=True
         )
 
     def closeWindow(self):

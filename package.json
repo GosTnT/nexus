@@ -1,10 +1,10 @@
 {
-  "name": "npx create-turbo@latest",
+  "name": "Nexus",
   "private": true,
   "scripts": {
-    "dev": "make docker-up",
-    "dev-build": "make docker-build",
-    "lint": "turbo lint",
+    "docker": "make docker-up",
+    "docker-build": "make docker-build",
+    "docker_down": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {

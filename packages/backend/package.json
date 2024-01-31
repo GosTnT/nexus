@@ -1,9 +1,0 @@
-{
-  "name": "@nexus/backend",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "generate": "python models/db_connection.py && python models/users_methods.py",
-    "uvicorn": "uvicorn controllers.main:app --host=0.0.0.0 port=80 --reload"
-  }
-}

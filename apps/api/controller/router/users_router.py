@@ -31,16 +31,12 @@ async def register_user(request: Request):
 
 @user_router.post("/login/")
 async def login_in_db(request: Request):
-    try:
-        data = await request.json()
-        username = data.get("login")
-        password = data.get("password")
-        if not username or not password:
-            raise HTTPException(
-                status_code=400, detail="Username and password are required"
-            )
-        login_authentication(username, password)
-        return {"message": "Login successful"}
-
-    except Exception:
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+    data = await request.json()
+    username = data.get("login")
+    password = data.get("password")
+    if not username or not password:
+        raise HTTPException(
+            status_code=400, detail="Username and password are required"
+        )
+    res = login_authentication(username, password)
+    return res

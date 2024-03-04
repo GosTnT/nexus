@@ -32,7 +32,7 @@ async def register_user(request: Request):
 @user_router.post("/login/")
 async def login_in_db(request: Request):
     try:
-        data = request.json()
+        data = await request.json()
         username = data.get("login")
         password = data.get("password")
         if not username or not password:

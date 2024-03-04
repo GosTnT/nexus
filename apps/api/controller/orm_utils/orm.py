@@ -35,8 +35,8 @@ class order(Base):
     eloWhenOrdered = Column(String)
     usernameLogin = Column(String)
     passwordLogin = Column(String)
-    idBooster = Column(Integer, ForeignKey("boosters.id"))
-    idCliente = Column(Integer, ForeignKey("users.id"))
+    idBooster = Column(Integer, ForeignKey("booster.id"))
+    idCliente = Column(Integer, ForeignKey("user.id"))
 
     booster = relationship("booster", foreign_keys=[idBooster])
 

@@ -1,25 +1,31 @@
+<h1 align="center">Nexus - A plataforma líder em boost.</h1>
+
 ## Table of contents
-* [Backend](#Intro)
-* [Web](#Desktop)
+
+* [Backend](#Backend)
+* [Web](#Web)
 * [Desktop](#Desktop)
 <!--## Intro -->
 
+## Desenvolvimento local
 ## Backend
-##### Desenvolvimento
 - Na pasta root copie o .env.example para um arquivo .env 
 
 ```
 $ docker compose up
 ```
-> Sobe a api e o banco de dados em um container docker
 ```
 $ docker compose down
 ```
+- Sobe a api e o banco de dados em um container docker
 > Derruba o container
 
 ## Web 
-##### Desenvolvimento
 
+```bash
+# Instala as dependencias
+$ npm install
+```
 ```
 $ npm run tailwind
 ```
@@ -37,6 +43,9 @@ Para fazer isso ele utiliza os arquivos buildados do frontend como o tailwind e 
 
 ##### Desenvolvimento
 ```
+$ npm install
+```
+```
 $ npm run tailwind
 ```
 
@@ -49,15 +58,13 @@ $ npm run webview
 ```
 
 
-> <strong>Pywebview</strong> é usado para seu criar um programa Python com tecnologia de front end
+> <strong>Pywebview</strong> é usado para criar um programa desktop com tecnologia de front end {html,css,js}
 
 ## Outros
 ##### Linters
 Os linters existentes são configurados por padrão e gerados pelo Turborepo
 
-###### TODO
-- Configurar os linters para manter um padrão dentro do projeto
-- Configurar deploy em alguma plataforma como github pages ou vercel
+
 ##### Monorepo
 - Repositório é feito com [Turborepo](https://turbo.build/repo/docs) que permite usar caching para acelerar processos 
 e uma manutenção mais facil de todo o ambiente.

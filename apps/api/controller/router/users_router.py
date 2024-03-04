@@ -1,6 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request, HTTPException
+from ..service.users_methods import login_authentication, user_register
 
-from controller.service.users_methods import register_in_db
 
 user_router = APIRouter()
 
@@ -11,12 +11,36 @@ def home():
 
 
 @user_router.post("/register")
-def register_user(username: str, password: str):
+async def register_user(request: Request):
+    data = await request.json()
 
-    res = register_in_db(username, password)
+    username = data.get("login")
+    password = data.get("password")
+
+    if not username or not password:
+        raise HTTPException(
+            status_code=400, detail="Username and password are required"
+        )
+
+    res = user_register(username, password)
     return res
+    #
+    # except Exception:
+    #     raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
 @user_router.post("/login/")
-def login_in_db(username: str, password: str):
-    pass
+async def login_in_db(request: Request):
+    try:
+        data = request.json()
+        username = data.get("login")
+        password = data.get("password")
+        if not username or not password:
+            raise HTTPException(
+                status_code=400, detail="Username and password are required"
+            )
+        login_authentication(username, password)
+        return {"message": "Login successful"}
+
+    except Exception:
+        raise HTTPException(status_code=500, detail="Internal Server Error")

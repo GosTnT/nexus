@@ -1,22 +1,52 @@
-from controller.orm_utils.db_connection import DbConfigurations
-from controller.orm_utils.orm import user, booster, order
+from ..orm_utils.db_connection import DbManagements
+from ..orm_utils.orm import user
 from sqlalchemy.exc import SQLAlchemyError
 
-db = DbConfigurations
+from contextlib import contextmanager
+
+db = DbManagements()
 
 
-def register_in_db(username, password):
+@contextmanager
+def session_scope():
+    """Provide a transactional scope around a series of operations."""
     session = db.connect_to_db()
-    if session:
-        try:
-            booster_1 = booster(login=username, password=password)
-            session.add(booster_1)
-            session.commit()
-        except SQLAlchemyError as e:
-            session.rollback()
-            return f"erro ao cadastrar usuário{e}"
-        finally:
-            session.close()
+    try:
+        yield session
+        session.commit()
+    except SQLAlchemyError as e:
+        print(f"Erro no banco de dados: {e}")
+        session.rollback()
+        raise  # Propaga a exceção para o chamador da função
+    finally:
+        session.close()
+
+
+def user_register(login, password):
+    try:
+        with session_scope() as session:
+            new_user = user(login=login, password=password)
+            session.add(new_user)
+            return "Inserção bem-sucedida!"
+    except SQLAlchemyError as e:
+        print(f"Erro na conexão ou criação de tabelas: {e}")
+
+
+def login_authentication(username, password):
+    try:
+        with session_scope() as session:
+            # Verifica se há um usuário com o nome de usuário e senha fornecidos
+            booster_validation = (
+                session.query(user).filter_by(
+                    login=username, password=password).first()
+            )
+            if booster_validation:
+                print("Usuário validado com sucesso!")
+                # Faça aqui o que deseja fazer com o usuário validado
+            else:
+                print("Usuário não encontrado ou senha incorreta.")
+    except SQLAlchemyError as e:
+        print(f"Erro ao validar booster: {e}")
 
 
 def delete_user(user):
@@ -33,7 +63,7 @@ def generate_data():
         {"name": "ljm1005412", "passw": "Wjdals87"},
         {"name": "chainerdm", "passw": "Goblins69"},
     ]
-    for user in customers:
+    for name in customers:
         name = user["name"]
         passw = user["passw"]
-        register_in_db(name, passw)
+        user_register(name, passw)

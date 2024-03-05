@@ -1,8 +1,14 @@
+import { MyCarousel } from './Carousel';
 import { HeroSection } from './HeroSection';
-import { Nexus } from './Nexus';
-import { NavigationMenuDemo } from './NavigationMenuDemo'
-import './output.css'
+import { NavigationMenuDemo } from './NavigationMenuDemo';
+import { Text, Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
+
+import { Button, Heading } from '@radix-ui/themes';
 import { createRoot } from 'react-dom/client';
+import './output.css';
+
+
 const app = document.getElementById('root') as HTMLElement;
 const root = createRoot(app);
 function Sidebar() {
@@ -19,8 +25,8 @@ function Sidebar() {
       <div className="w-44">
         {/* Iterate over the sidebar items array and render each item */}
         {sidebarItems.map((item, index) => (
-          <div key={index} className="bg-gray-200 p-4 mb-4">
-            <h3 className="text-sm font-semibold mb-2">{item.title}</h3>
+          <div key={index} className={`bg-gray-200 p-4 ${index === 0 ? 'rounded-tr-2xl' : ''}`}>
+            <h3 className="text-sm font-semibold">{item.title}</h3>
             <p className="text-xs">{item.subtitle}</p>
           </div>
         ))}
@@ -30,23 +36,35 @@ function Sidebar() {
 }
 root.render(
   <div>
-    <NavigationMenuDemo />
-    <HeroSection />
-    <Nexus />
-    <div className=''>
+    <Theme>
+      <NavigationMenuDemo />
+      <HeroSection />
+      <MyCarousel />
+      <div className=''>
 
-      <div className=" flex justify-center items-center border border-white width_2 color-semi_black p-6">
+        <div className="border border-white width_2 color-semi_black p-6">
+          <div className="w-full text-center p-2 mb-3">
+            <Heading mb='3' size="7"> Adaptado exclusivamente para você</Heading>
+            <Text className="text-subtext" size="3">
+              Reconhecemos a singularidade de cada cliente<br />por isso oferecemos um serviço premium.
+            </Text>
 
-        <Sidebar />
-        <div className="flex justify-center items-center h-full w-full border border-yellow-700 items-end">
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</div>
+          </div>
 
-        <div className="flex justify-center border border-red-600 ">
-          <h1 className="color-red-300 border border-green-700">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</h1></div>
-        <div className="bg-red w-fit p-8">
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+          <div className="flex flex-row w-full border border-white h-fit">
+            <Sidebar />
+            <div className="w-full border border-green h-100 bg-red-300"></div>
+          </div>
         </div>
+        {/* <div className="flex justify-center items-center h-full w-full border border-yellow-700 items-end"> */}
+        {/*   Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</div> */}
+
+        {/* <div className="flex justify-center border border-red-600 "> */}
+        {/*   <h1 className="color-red-300 border border-green-700">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</h1></div> */}
+        {/* <div className="bg-red w-fit p-8"> */}
+        {/*   Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. */}
+        {/* </div> */}
       </div>
-    </div>
+    </Theme>
   </div>
 );

@@ -20,7 +20,7 @@ module.exports = {
       colors: {
         semi_black: "#171717",
         title: '#F5F5F7',
-        subtext_color: '#86868B',
+        subtext: '#86868B',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -1,5 +1,4 @@
 import * as React from "react"
-
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -51,13 +50,10 @@ export function CarouselDApiDemo() {
     </div>
   )
 }
-export function Nexus() {
+export function MyCarousel() {
   return (
     <>
-      <div className="container w-4/6 flex border border-black max-w-screen ">
-        <h1 className="text-4xl font-semibold tracking-tight text-title">
-          Conheça o Nexus
-        </h1>
+      <div className="container w-4/6 flex border border-black max-w-screen">
       </div>
       <div className="w-full rounded-full overflow-hidden m-6 flex flex-col justify-center items-center">
 

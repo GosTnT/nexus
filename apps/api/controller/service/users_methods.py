@@ -17,7 +17,7 @@ def session_scope():
     except SQLAlchemyError as e:
         print(f"Erro no banco de dados: {e}")
         session.rollback()
-        raise  # Propaga a exceção para o chamador da função
+        raise
     finally:
         session.close()
 
@@ -35,14 +35,12 @@ def user_register(login, password):
 def login_authentication(username, password):
     try:
         with session_scope() as session:
-            # Verifica se há um usuário com o nome de usuário e senha fornecidos
             booster_validation = (
                 session.query(user).filter_by(
                     login=username, password=password).first()
             )
             if booster_validation:
                 print("Usuário validado com sucesso!")
-                # Faça aqui o que deseja fazer com o usuário validado
             else:
                 print("Usuário não encontrado ou senha incorreta.")
     except SQLAlchemyError as e:

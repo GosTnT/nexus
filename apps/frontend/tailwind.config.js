@@ -2,14 +2,18 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './src/components/ui/*.{ts,tsx}',
-    './src/componetns/*.{ts,tsx}',
-    './index.html',
-    './src/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./src/components/ui/*.{ts,tsx}",
+    "./src/components/nexus_components/*.{ts,tsx}",
+    "./src/components/*.{ts,tsx}",
+    "./index.html",
+    "./src/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      general: ["Inter", "Helvetica"],
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -20,13 +24,13 @@ module.exports = {
     extend: {
       colors: {
         semi_black: "#171717",
-        title: '#F5F5F7',
-        subtext: '#86868B',
+        title: "#F5F5F7",
+        subtext: "#86868B",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        FormDataEventground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -78,4 +82,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

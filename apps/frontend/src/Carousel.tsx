@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -8,6 +7,8 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel"
+import { Container, Flex, Heading } from "@radix-ui/themes"
+import * as React from "react"
 
 export function CarouselDApiDemo() {
   const [api, setApi] = React.useState<CarouselApi>()
@@ -45,7 +46,6 @@ export function CarouselDApiDemo() {
         <CarouselNext />
       </Carousel>
       <div className="py-2 text-center text-sm text-muted-foreground">
-        Slide {current} of {count}
       </div>
     </div>
   )
@@ -53,13 +53,13 @@ export function CarouselDApiDemo() {
 export function MyCarousel() {
   return (
     <>
-      <div className="container w-4/6 flex border border-black max-w-screen">
-      </div>
-      <div className="w-full rounded-full overflow-hidden m-6 flex flex-col justify-center items-center">
+      <Flex justify="center">
+        <div className="border border-white w-8/12 color-semi_black p-6">
+          aaaa
+          <Heading mb='3' size="7">Conheça o Nexus</Heading>
+        </div>
+      </Flex>
 
-      </div>
-      <div></div>
       <CarouselDApiDemo />
-    </>
-  );
+    </>)
 }

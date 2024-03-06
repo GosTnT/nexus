@@ -1,11 +1,10 @@
+import { Button, Grid, Heading, Text, Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { MyCarousel } from './Carousel';
 import { HeroSection } from './HeroSection';
 import { NavigationMenuDemo } from './NavigationMenuDemo';
-import { Text, Theme } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
-
-import { Button, Heading } from '@radix-ui/themes';
-import { createRoot } from 'react-dom/client';
 import './output.css';
 
 
@@ -35,16 +34,16 @@ function Sidebar() {
   );
 }
 root.render(
-  <div>
-    <Theme>
+  <StrictMode>
+    <Theme appearance='dark' className='bg-background'>
       <NavigationMenuDemo />
       <HeroSection />
       <MyCarousel />
-      <div className=''>
+      <div className='flex justify-center border border-red-800'>
 
-        <div className="border border-white width_2 color-semi_black p-6">
+        <div className="border border-white w-9/12 color-semi_black p-6">
           <div className="w-full text-center p-2 mb-3">
-            <Heading mb='3' size="7"> Adaptado exclusivamente para você</Heading>
+            <Heading mb='3' size="8" weight='medium' className=""> Adaptado exclusivamente para você</Heading>
             <Text className="text-subtext" size="3">
               Reconhecemos a singularidade de cada cliente<br />por isso oferecemos um serviço premium.
             </Text>
@@ -65,6 +64,7 @@ root.render(
         {/*   Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. */}
         {/* </div> */}
       </div>
-    </Theme>
-  </div>
+
+    </Theme >
+  </StrictMode >
 );

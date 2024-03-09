@@ -33,7 +33,7 @@ export const SubTitle = ({ children }: TitleProps) => {
 
 export const SubText = ({ children }: TitleProps) => {
   return (
-    <Text size="3" mb="3" className="text-zinc-400">
+    <Text size="3" mb="3" className="text-zinc-400 text-wrap">
       {children}
     </Text>
   );

@@ -8,6 +8,7 @@ module.exports = {
     "./src/components/*.{ts,tsx}",
     "./index.html",
     "./src/*.{ts,tsx}",
+    "./test/*.{html,tsx}",
   ],
   prefix: "",
   theme: {
@@ -23,6 +24,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        features: "#4B4B4B",
         semi_black: "#171717",
         title: "#F5F5F7",
         subtext: "#86868B",

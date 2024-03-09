@@ -7,7 +7,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { Container, Flex, Heading } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import * as React from "react";
 import { Title } from "./components/nexus_components/text";
 

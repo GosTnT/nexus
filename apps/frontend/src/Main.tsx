@@ -1,4 +1,5 @@
 import { Theme } from "@radix-ui/themes";
+import LastCallToAction from "./LastCallToAction";
 import "@radix-ui/themes/styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
@@ -7,21 +8,25 @@ import { MyCarousel } from "./Carousel";
 import { Features } from "./Features";
 import { HeroSection } from "./HeroSection";
 import { NavigationMenuDemo } from "./NavigationMenuDemo";
-import { Title } from "./components/nexus_components/text";
+import { Faq } from "./Faq";
 import "./output.css";
 
+import { NextUIProvider } from "@nextui-org/system";
 const app = document.getElementById("root") as HTMLElement;
 const root = createRoot(app);
-
 root.render(
   <StrictMode>
     <Theme appearance="dark">
-      <NavigationMenuDemo />
-      <HeroSection />
-      <MyCarousel />
+      <NextUIProvider>
+        <NavigationMenuDemo />
+        <HeroSection />
+        <MyCarousel />
 
-      <Features />
-      <BoosterCard />
+        <Features />
+        <BoosterCard />
+        <Faq />
+        <LastCallToAction />
+      </NextUIProvider>
     </Theme>
   </StrictMode>,
 );

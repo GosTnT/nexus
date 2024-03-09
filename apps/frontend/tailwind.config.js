@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+const { nextui } = require("@nextui-org/theme");
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -9,6 +11,7 @@ module.exports = {
     "./index.html",
     "./src/*.{ts,tsx}",
     "./test/*.{html,tsx}",
+    "../../node_modules/@nextui-org/theme/dist/components/radio.js",
   ],
   prefix: "",
   theme: {
@@ -83,5 +86,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [nextui(), require("tailwindcss-animate")]
+
 };

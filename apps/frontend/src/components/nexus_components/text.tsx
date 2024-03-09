@@ -10,7 +10,7 @@ export const Title = ({ children }: TitleProps) => {
     <Heading
       size="8"
       weight="medium"
-      className="text-title font-general"
+      className="text-title font-general text-center"
       mb="3"
     >
       {children}

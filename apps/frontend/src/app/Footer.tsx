@@ -1,6 +1,4 @@
 import { Flex, Separator, Text } from "@radix-ui/themes";
-import { Heading } from "lucide-react";
-
 
 export default function Footer() {
   return (

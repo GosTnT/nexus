@@ -1,21 +1,38 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "app",
     "paths": {
       "@/*": [
-        "./src/*"
+        "app/*",
+        "app/components/*",
+        "app/components/**/*"
       ]
     },
     "outDir": "dist",
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "removeComments": true,
+    "moduleResolution": "Node",
     "target": "es2017", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "jsx": "react-jsx", /* Specify what JSX code is generated. */
     "module": "ES6", /* Specify what module code is generated. */
     "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
     "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
     "strict": true, /* Enable all strict type-checking options. */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "declaration": true,
+    "sourceMap": true,
+    "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+    "include": [
+      "app"
+    ]
   }
 }

@@ -1,8 +1,7 @@
 {
   "name": "@nexus/website",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.1",
   "scripts": {
     "tailwind": "npx tailwindcss -i ./src/globals.css -o ./src/output.css --watch",
     "dev": "vite",

@@ -4,7 +4,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "app/components/ui/navigation-menu";
 import logo from "../img/icon2.svg";
 import { RxPerson } from "react-icons/rx";
 

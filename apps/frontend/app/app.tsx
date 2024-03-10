@@ -1,10 +1,10 @@
+import { NextUIProvider } from "@nextui-org/system";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import App from "./containers/App";
 import "./output.css";
-import { NextUIProvider } from "@nextui-org/system";
-import App from "./App";
 
 
 const app = document.getElementById("root") as HTMLElement;

@@ -4,6 +4,7 @@
 node_modules
 .pnp
 .pnp.js
+.parcel-cache
 
 # Local env files
 .env

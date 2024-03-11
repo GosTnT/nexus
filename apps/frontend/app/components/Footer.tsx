@@ -1,5 +1,4 @@
-import { Flex, Separator, Text } from "@radix-ui/themes";
-
+import { Flex, Heading, Separator, Text } from "@radix-ui/themes";
 export default function Footer() {
   return (
     <>
@@ -8,7 +7,7 @@ export default function Footer() {
         <Flex justify="center" direction="column" gap="3" className="w-8/12" >
           <Flex className="items-center gap-24"  >
             <Flex className="items-center" gap="3">
-              <img src={logo} alt="regalis-logo" className="w-16 h-16" />
+              <img alt="regalis-logo" className="w-16 h-16" />
               <Heading size="3" className="text-nowrap">Regalis Boost</Heading>
             </Flex>
             <Text> League of Legends é uma marca registrada da Riot Games, Inc.Nós não somos de nenhuma forma

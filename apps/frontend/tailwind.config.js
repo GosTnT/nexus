@@ -4,12 +4,9 @@ const { nextui } = require("@nextui-org/theme");
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./src/components/ui/*.{ts,tsx}",
-    "./src/components/nexus_components/*.{ts,tsx}",
-    "./src/components/*.{ts,tsx}",
+    "./app/components/ui/*.{ts,tsx}",
+    "./app/components/*.{ts,tsx}",
     "./index.html",
-    "./src/*.{ts,tsx}",
     "./test/*.{html,tsx}",
     "../../node_modules/@nextui-org/theme/dist/components/radio.js",
   ],

@@ -1,6 +1,6 @@
 import { Flex, Text } from "@radix-ui/themes";
-import { Button } from "./components/ui/button"
-import { Title } from "./components/nexus_components/text";
+import { Button } from "@/components/ui/button"
+import { Title } from "@/components/text";
 
 export default function LastCallToAction() {
   return (

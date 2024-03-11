@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "app",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "app/*",
-        "app/components/*",
-        "app/components/**/*"
-      ]
+        "app/*"
+      ],
     },
     "outDir": "dist",
     "noUnusedLocals": true,
@@ -31,8 +29,5 @@
     "declaration": true,
     "sourceMap": true,
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
-    "include": [
-      "app"
-    ]
   }
 }

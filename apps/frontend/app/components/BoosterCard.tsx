@@ -1,9 +1,9 @@
-import { Title } from "./components/nexus_components/text";
+import { Title } from "@/components/text";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "./components/ui/carousel";
+} from "@/components/ui/carousel";
 
 export function BoosterCard() {
   return (

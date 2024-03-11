@@ -1,4 +1,4 @@
-import { SubText, Title } from "@/components/nexus_components/text";
+import { SubText, Title } from "@/components/text";
 import { Heading, Text } from "@radix-ui/themes";
 
 function Sidebar() {

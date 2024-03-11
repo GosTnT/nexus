@@ -1,4 +1,4 @@
-import { Card, CardContent } from "app/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -6,10 +6,10 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "app/components/ui/carousel";
+} from "@/components/ui/carousel";
 import { Flex } from "@radix-ui/themes";
 import * as React from "react";
-import { Title } from "./components/nexus_components/text";
+import { Title } from "@/components/text";
 
 export function CarouselDApiDemo() {
   const [api, setApi] = React.useState<CarouselApi>();

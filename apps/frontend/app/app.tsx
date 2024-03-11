@@ -4,8 +4,7 @@ import "@radix-ui/themes/styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./containers/App";
-import "./output.css";
-
+// import history from "lib/history";
 
 const app = document.getElementById("root") as HTMLElement;
 const root = createRoot(app);

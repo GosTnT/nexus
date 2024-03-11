@@ -1,5 +1,5 @@
-import { Button } from "./components/ui/button";
-import { Title, SubText } from "@/components/nexus_components/text";
+import { Button } from "@/components/ui/button";
+import { Title, SubText } from "@/components/text";
 export function HeroSection() {
   return (
     <>

@@ -1,4 +1,4 @@
-import { Title } from "./components/nexus_components/text";
+import { Title } from "@/components/text";
 import { useState } from "react";
 import { RadioGroup, Radio } from "@nextui-org/radio";
 import { Flex } from "@radix-ui/themes";

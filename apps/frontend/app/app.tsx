@@ -10,7 +10,7 @@ const app = document.getElementById("root") as HTMLElement;
 const root = createRoot(app);
 root.render(
   <StrictMode>
-    <Theme appearance="dark">
+    <Theme>
       <NextUIProvider>
         <App />
       </NextUIProvider>

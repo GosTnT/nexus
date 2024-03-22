@@ -1,26 +1,19 @@
-
-import { BoosterCard } from "@/components/BoosterCard";
-import { MyCarousel } from "@/components/Carousel";
-import { Faq } from "@/components/Faq";
-import { Features } from "@/components/Features";
-import { HeroSection } from "@/components/HeroSection";
-import LastCallToAction from "@/components/LastCallToAction";
-import { NavigationMenuDemo } from "@/components/NavigationMenuDemo";
-
-import Footer from "@/components/Footer";
+import FeaturesCarousel from "@/components/FeaturesCarousel";
+import FeaturesInteractive from "@/components/FeaturesInteractive";
+import Header from "@/components/Header";
+import HeroSection from "@/components/Hero";
+import logo from "@/images/akali.jpeg";
+import { Flex } from "@radix-ui/themes";
 export default function HomePage() {
-
   return (
     <>
-      <NavigationMenuDemo />
-      <HeroSection />
-      <MyCarousel />
-
-      <Features />
-      <BoosterCard />
-      <Faq />
-      <LastCallToAction />
-      < Footer />
+      <img src={logo} className="opacity-20 absolute -z-10" />
+      <Flex direction="column" className="z-1">
+        <Header />
+        <HeroSection />
+        <FeaturesCarousel />
+        <FeaturesInteractive />
+      </Flex>
     </>
-  )
+  );
 }

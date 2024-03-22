@@ -1,21 +1,18 @@
-import HomePage from "@/containers/HomePage"
-import NotFound from "@/containers/NotFoundPage";
-import "./output.css"
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+// import NotFound from "@/containers/NotFoundPage";
+// import {
+//   createBrowserRouter,
+//   RouterProvider,
+// } from "react-router-dom";
 
-const router = createBrowserRouter([{
-  path: "/",
-  element: <HomePage />,
-  errorElement: <NotFound />,
-},]);
+import HomePage from "@/containers/HomePage";
+import "./output.css";
+// const router = createBrowserRouter([{
+//   path: "/",
+//   element:a
 export default function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <HomePage />
     </>
-  )
-
+  );
 }

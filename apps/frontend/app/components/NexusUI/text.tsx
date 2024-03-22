@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { Heading, Text } from "@radix-ui/themes";
+import { ReactNode } from "react";
 
 interface TitleProps {
   children: ReactNode;
@@ -11,7 +11,6 @@ export const Title = ({ children }: TitleProps) => {
       size="8"
       weight="medium"
       className="text-title font-general text-center"
-      mb="3"
     >
       {children}
     </Heading>
@@ -20,12 +19,7 @@ export const Title = ({ children }: TitleProps) => {
 
 export const SubTitle = ({ children }: TitleProps) => {
   return (
-    <Heading
-      size="9"
-      weight="medium"
-      className="text-title font-general"
-      mb="3"
-    >
+    <Heading size="9" weight="medium" className="text-title font-general">
       {children}
     </Heading>
   );
@@ -33,11 +27,12 @@ export const SubTitle = ({ children }: TitleProps) => {
 
 export const SubText = ({ children }: TitleProps) => {
   return (
-    <Text size="3" mb="3" className="text-zinc-400 text-wrap">
+    <Text size="3" className="text-zinc-400 text-wrap">
       {children}
     </Text>
   );
 };
+
 // import { Heading, Text } from "@radix-ui/themes";
 //
 // Heading = <Heading className="text-4xl font-semibold tracking-tight text-title mb-6">

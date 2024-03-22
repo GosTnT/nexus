@@ -7,7 +7,8 @@ module.exports = {
     "./app/components/ui/*.{ts,tsx}",
     "./app/components/*.{ts,tsx}",
     "./index.html",
-    "./test/*.{html,tsx}",
+    "./app/",
+    "./app/components/**/*.{ts,tsx}",
     "../../node_modules/@nextui-org/theme/dist/components/radio.js",
   ],
   prefix: "",
@@ -23,6 +24,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        hero: "url('./app/images/akali.jpeg')",
+      },
       colors: {
         features: "#4B4B4B",
         semi_black: "#171717",
@@ -83,6 +87,5 @@ module.exports = {
       },
     },
   },
-  plugins: [nextui(), require("tailwindcss-animate")]
-
+  plugins: [nextui(), require("tailwindcss-animate")],
 };

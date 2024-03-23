@@ -24,9 +24,6 @@ module.exports = {
       },
     },
     extend: {
-      backgroundImage: {
-        hero: "url('./app/images/akali.jpeg')",
-      },
       colors: {
         features: "#4B4B4B",
         semi_black: "#171717",

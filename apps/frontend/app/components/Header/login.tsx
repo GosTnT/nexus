@@ -4,7 +4,7 @@ export function Login() {
   return (
     <>
       <Button variant="link">
-        <RxPerson className="text-primary text-xl hover:opacity-70 hover:no-underline" />
+        <RxPerson className="text-primary text-xl opacity-80 hover:opacity-100 hover:no-underline " />
       </Button>
     </>
   );

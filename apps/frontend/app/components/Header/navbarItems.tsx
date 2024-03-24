@@ -8,7 +8,7 @@ export function NavbarItems() {
       <Flex>
         {links.map((link, index) => (
           <Button
-            className="text-title hover:opacity-70 hover:no-underline"
+            className="text-title opacity-90 hover:opacity-100  hover:no-underline"
             variant="link"
             key={index}
           >

@@ -51,3 +51,13 @@
 
 @layer base {
 }
+.animate-gradient:hover {
+  box-shadow:
+    0 4px 6px rgba(255, 110, 140, 0.2),
+    0 5px 15px rgba(75, 108, 183, 0.1);
+}
+@keyframes slidebg {
+  to {
+    background-position: 30vw;
+  }
+}

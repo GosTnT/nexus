@@ -754,6 +754,10 @@ video {
   display: block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -1347,6 +1351,10 @@ video {
   background-color: hsl(var(--nextui-default-100) / var(--nextui-default-100-opacity, var(--tw-bg-opacity)));
 }
 
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
+}
+
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -1503,6 +1511,10 @@ video {
   letter-spacing: -0.025em;
 }
 
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
 .text-card-foreground {
   color: hsl(var(--card-foreground));
 }
@@ -1621,6 +1633,26 @@ video {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-90 {
+  opacity: 0.9;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.opacity-95 {
+  opacity: 0.95;
+}
+
+.opacity-85 {
+  opacity: 0.85;
 }
 
 .shadow {
@@ -2104,6 +2136,18 @@ video {
   animation-duration: 200ms;
 }
 
+.animate-gradient:hover {
+  box-shadow:
+    0 4px 6px rgba(255, 110, 140, 0.2),
+    0 5px 15px rgba(75, 108, 183, 0.1);
+}
+
+@keyframes slidebg {
+  to {
+    background-position: 30vw;
+  }
+}
+
 .after\:ml-0::after {
   content: var(--tw-content);
   margin-left: 0px;
@@ -2145,11 +2189,6 @@ video {
   color: hsl(var(--accent-foreground));
 }
 
-.hover\:text-red-300:hover {
-  --tw-text-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-text-opacity));
-}
-
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -2160,6 +2199,10 @@ video {
 
 .hover\:opacity-70:hover {
   opacity: 0.7;
+}
+
+.hover\:opacity-100:hover {
+  opacity: 1;
 }
 
 .focus\:bg-accent:focus {

@@ -10,7 +10,7 @@ export const Title = ({ children }: TitleProps) => {
     <Heading
       size="8"
       weight="medium"
-      className="text-title font-general text-center"
+      className="text-title font-general text-center tracking-wide-[0.010em] "
     >
       {children}
     </Heading>
@@ -27,7 +27,7 @@ export const SubTitle = ({ children }: TitleProps) => {
 
 export const SubText = ({ children }: TitleProps) => {
   return (
-    <Text size="3" className="text-zinc-400 text-wrap">
+    <Text size="3" className="text-zinc-400 text-wrap tracking-wide-[0.010em]">
       {children}
     </Text>
   );

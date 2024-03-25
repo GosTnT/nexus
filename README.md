@@ -7,8 +7,8 @@
 * [Desktop](#Desktop)
 <!--## Intro -->
 
-## Desenvolvimento local
 ## Backend
+##### Desenvolvimento
 - Na pasta root copie o .env.example para um arquivo .env 
 
 ```
@@ -21,9 +21,9 @@ $ docker compose down
 > Derruba o container
 
 ## Web 
+##### Desenvolvimento
 
-```bash
-# Instala as dependencias
+```
 $ npm install
 ```
 ```
@@ -64,7 +64,9 @@ $ npm run webview
 ##### Linters
 Os linters existentes são configurados por padrão e gerados pelo Turborepo
 
-
+###### TODO
+- Configurar os linters para manter um padrão dentro do projeto
+- Configurar deploy em alguma plataforma como github pages ou vercel
 ##### Monorepo
 - Repositório é feito com [Turborepo](https://turbo.build/repo/docs) que permite usar caching para acelerar processos 
 e uma manutenção mais facil de todo o ambiente.

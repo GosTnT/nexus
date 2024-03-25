@@ -1,4 +1,4 @@
-import { Heading, Text } from "@radix-ui/themes";
+import { Heading } from "@radix-ui/themes";
 import { ReactNode } from "react";
 
 interface TitleProps {
@@ -22,14 +22,6 @@ export const SubTitle = ({ children }: TitleProps) => {
     <Heading size="9" weight="medium" className="text-title font-general">
       {children}
     </Heading>
-  );
-};
-
-export const SubText = ({ children }: TitleProps) => {
-  return (
-    <Text size="3" className="text-zinc-400 text-wrap tracking-wide-[0.010em]">
-      {children}
-    </Text>
   );
 };
 

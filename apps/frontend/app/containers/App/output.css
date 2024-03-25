@@ -708,6 +708,10 @@ video {
   z-index: 1;
 }
 
+.-z-10 {
+  z-index: -10;
+}
+
 .-m-2 {
   margin: -0.5rem;
 }
@@ -1673,6 +1677,10 @@ video {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-20 {
+  opacity: 0.2;
 }
 
 .shadow {

@@ -1,4 +1,4 @@
-import { Title } from "@/components/text";
+import { Title } from "@/components/NexusUI/text";
 import {
   Carousel,
   CarouselContent,

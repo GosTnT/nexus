@@ -17,7 +17,7 @@ export function HeroButton() {
       duration: common_duration,
       overwrite: "auto",
     });
-  }, {});
+  });
 
   const renderCheckout = () => {
     dispatch(isRender());

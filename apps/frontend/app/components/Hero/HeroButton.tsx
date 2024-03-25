@@ -1,5 +1,5 @@
 import { NexusButton } from "@/components/NexusUI/NexusButton";
-import { isRender } from "@/store/counter/counterSlice";
+import { isRender } from "@/store/checkoutRender";
 import { RootState } from "@/store/store";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -19,14 +19,12 @@ export function HeroButton() {
     });
   }, {});
 
-  const fetchData = () => {};
   const renderCheckout = () => {
     dispatch(isRender());
     console.log(count);
   };
   return (
     <>
-      <button onClick={fetchData}>FETCH DATA</button>
       <NexusButton onClick={renderCheckout} ref={button}>
         Contrate agora
       </NexusButton>

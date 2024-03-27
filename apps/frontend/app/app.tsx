@@ -1,17 +1,33 @@
+import Checkout from "@/containers/Checkout";
+import HomePage from "@/containers/HomePage";
 import { store } from "@/store/store";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import App from "../app/containers/App";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+import "./output.css";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+    children: [
+      {
+        path: "team",
+        element: <Checkout />,
+      },
+    ],
+  },
+]);
 const app = document.getElementById("root") as HTMLElement;
 const root = createRoot(app);
 root.render(
   <StrictMode>
     <Theme>
       <Provider store={store}>
-        <App />
+        <RouterProvider router={router} />
       </Provider>
     </Theme>
   </StrictMode>,

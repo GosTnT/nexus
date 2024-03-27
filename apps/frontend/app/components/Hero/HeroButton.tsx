@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 export function HeroButton() {
-  const count = useSelector((state: RootState) => state.counter.rendered);
+  const rendered = useSelector((state: RootState) => state.counter.rendered);
   const dispatch = useDispatch();
   const common_duration = 5;
   const button = useRef(null);
@@ -21,7 +21,7 @@ export function HeroButton() {
 
   const renderCheckout = () => {
     dispatch(isRender());
-    console.log(count);
+    console.log(rendered);
   };
   return (
     <>

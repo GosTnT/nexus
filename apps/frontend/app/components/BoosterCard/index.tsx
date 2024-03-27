@@ -5,7 +5,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-export function BoosterCard() {
+export default function BoosterCard() {
   return (
     <>
       <div className="text-center">

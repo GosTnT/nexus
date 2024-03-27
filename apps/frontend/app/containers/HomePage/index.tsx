@@ -1,4 +1,4 @@
-import { BoosterCard } from "@/components/BoosterCard";
+import BoosterCard from "@/components/BoosterCard";
 import Faq from "@/components/Faq";
 import FeaturesCarousel from "@/components/FeaturesCarousel";
 import FeaturesInteractive from "@/components/FeaturesInteractive";

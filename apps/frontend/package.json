@@ -7,7 +7,7 @@
     "styled-components": "^5"
   },
   "scripts": {
-    "tailwind": "npx tailwindcss -i ./app/lib/globals.css -o ./app/containers/App/output.css --watch",
+    "tailwind": "npx tailwindcss -i ./app/lib/globals.css -o ./app/output.css --watch",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

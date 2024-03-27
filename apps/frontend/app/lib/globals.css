@@ -61,3 +61,6 @@
     background-position: 30vw;
   }
 }
+html {
+  overflow-x: hidden;
+}

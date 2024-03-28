@@ -1,3 +1,4 @@
+import { timeline } from "@/components/Hero/gsap/timeline";
 import { useGSAP } from "@gsap/react";
 import { Heading } from "@radix-ui/themes";
 import { gsap } from "gsap";
@@ -8,12 +9,9 @@ export function HeroTitle({}) {
 
   gsap.registerPlugin(TextPlugin);
 
-  const common_duration = 5;
   useGSAP(() => {
-    gsap.from(heading.current, {
-      opacity: 0,
-      y: -300,
-      duration: common_duration,
+    timeline.from(heading.current, {
+      y: -100,
     });
   });
   return (

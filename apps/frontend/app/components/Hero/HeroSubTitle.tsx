@@ -1,18 +1,19 @@
+import { timeline } from "@/components/Hero/gsap/timeline";
 import { useGSAP } from "@gsap/react";
 import { Text } from "@radix-ui/themes";
 import { useRef } from "react";
 
-import { gsap } from "gsap";
 export function HeroSubText() {
   const subText = useRef(null);
 
-  const common_duration = 5;
   useGSAP(() => {
-    gsap.from(subText.current, {
-      opacity: 0,
-      x: 300,
-      duration: common_duration,
-    });
+    timeline.from(
+      subText.current,
+      {
+        x: 300,
+      },
+      "-=1",
+    );
   }, {});
 
   return (

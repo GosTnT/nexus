@@ -1,33 +1,25 @@
+import { timeline } from "@/components/Hero/gsap/timeline";
 import { NexusButton } from "@/components/NexusUI/NexusButton";
-import { isRender } from "@/store/checkoutRender";
-import { RootState } from "@/store/store";
 import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 export function HeroButton() {
-  const rendered = useSelector((state: RootState) => state.counter.rendered);
-  const dispatch = useDispatch();
-  const common_duration = 5;
   const button = useRef(null);
   useGSAP(() => {
-    gsap.from(button.current, {
-      opacity: 0,
-      y: 300,
-      duration: common_duration,
-      overwrite: "auto",
-    });
+    timeline.from(
+      button.current,
+      {
+        y: 300,
+      },
+      "-=1",
+    );
   });
 
-  const renderCheckout = () => {
-    dispatch(isRender());
-    console.log(rendered);
-  };
   return (
     <>
-      <NexusButton onClick={renderCheckout} ref={button}>
-        Contrate agora
-      </NexusButton>
+      <Link to="/checkout">
+        <NexusButton ref={button}>Contrate agora</NexusButton>
+      </Link>
     </>
   );
 }

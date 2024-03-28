@@ -13,12 +13,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    children: [
-      {
-        path: "team",
-        element: <Checkout />,
-      },
-    ],
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   },
 ]);
 const app = document.getElementById("root") as HTMLElement;

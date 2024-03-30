@@ -62,6 +62,7 @@
   --text-medium-contrast-rgb-value: 99, 94, 105;
   --text-body: rgb(54, 49, 61);
   --text-high-contrast-rgb-value: 49, 49, 49;
+  --container-dots: rgb(66 66 69 / 70%);
 }
 .embla__viewport {
   overflow: hidden;
@@ -79,9 +80,6 @@
 }
 .embla__slide__number {
   box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  border-radius: 1.8rem;
-  font-size: 4rem;
-  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,6 +96,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
+  background-color: red;
   margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
 }
 .embla__dot {

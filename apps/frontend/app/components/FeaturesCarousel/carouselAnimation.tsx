@@ -1,16 +1,28 @@
-import { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
+import { EmblaOptionsType, EmblaCarouselType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import React, { useCallback } from "react";
+import { useEffect, useCallback, useState, useRef } from "react";
 import { DotButton, useDotButton } from "./carouselDots";
+import video from "@/images/large.mp4";
+import { Button } from "../ui/button";
 
-type PropType = {
-  slides: number[];
-  options?: EmblaOptionsType;
-};
+export default function CarouselAnimation() {
+  type Content = {
+    id: number;
+    video: string;
+  };
 
-const CarouselAnimation: React.FC<PropType> = (props) => {
-  const { slides, options } = props;
+  const videoContent: Content[] = [
+    {
+      id: 1,
+      video: video,
+    },
+    {
+      id: 2,
+      video: video,
+    },
+  ];
+  const options: EmblaOptionsType = { align: "start", direction: "ltr" };
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
@@ -30,13 +42,36 @@ const CarouselAnimation: React.FC<PropType> = (props) => {
     onNavButtonClick,
   );
 
+  const videoRefs = useRef<Record<number, HTMLVideoElement>>({});
+  function toggleVideo(video: any) {
+    const videoElement = videoRefs.current[video.id];
+
+    if (videoElement && videoElement.paused) {
+      videoElement.play();
+    } else if (videoElement) {
+      videoElement.pause();
+    }
+  }
+
   return (
     <section className="embla" dir="ltr">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
-            <div className="embla__slide" key={index}>
-              <div className="embla__slide__number">{index + 1}</div>
+          {videoContent.map((video) => (
+            <div className="embla__slide" key={video.id}>
+              <div className="embla__slide__number">
+                <video
+                  ref={(element) => {
+                    // Armazena a referência para cada elemento de vídeo na matriz de referências
+                    if (element) {
+                      videoRefs.current[video.id] = element;
+                    }
+                  }}
+                  autoPlay
+                  onClick={() => toggleVideo(video)}
+                  src={video.video}
+                ></video>
+              </div>
             </div>
           ))}
         </div>
@@ -57,6 +92,4 @@ const CarouselAnimation: React.FC<PropType> = (props) => {
       </div>
     </section>
   );
-};
-
-export default CarouselAnimation;
+}

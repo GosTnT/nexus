@@ -1,10 +1,10 @@
-import { EmblaOptionsType, EmblaCarouselType } from "embla-carousel";
+import video from "@/images/large.mp4";
+import { Flex } from "@radix-ui/themes";
+import { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useCallback, useState, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { DotButton, useDotButton } from "./carouselDots";
-import video from "@/images/large.mp4";
-import { Button } from "../ui/button";
 
 export default function CarouselAnimation() {
   type Content = {
@@ -17,6 +17,7 @@ export default function CarouselAnimation() {
       id: 1,
       video: video,
     },
+
     {
       id: 2,
       video: video,
@@ -78,17 +79,29 @@ export default function CarouselAnimation() {
       </div>
 
       <div className="embla__controls">
-        <div className="embla__dots">
-          {scrollSnaps.map((_, index) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={"embla__dot".concat(
-                index === selectedIndex ? " embla__dot--selected" : "",
-              )}
-            />
-          ))}
-        </div>
+        <Flex align="center" justify="center" className=" w-full relative">
+          <Flex className="relative" align="center" justify="center">
+            {scrollSnaps.map((_, index) => (
+              <DotButton
+                key={index}
+                onClick={() => onDotButtonClick(index)}
+                className={"embla__dot".concat(
+                  index === selectedIndex ? " embla__dot--selected" : "",
+                )}
+              />
+            ))}
+            <button
+              onClick={() => {
+                console.log(emblaApi?.slidesInView);
+              }}
+              className="absolute -right-14  bg-[#f5f5f7] toggleVideoButton w-[38px] h-[38px] rounded-full"
+            >
+              <svg viewBox="0 0 56 56">
+                <path d="M20.8,36V20c0-1.6,1-2.5,2.3-2.5c0.7,0,1.1,0.1,1.7,0.5l13.4,7.7c1.2,0.7,1.8,1.2,1.8,2.3 c0,1.1-0.6,1.6-1.8,2.3L24.8,38c-0.6,0.4-1,0.5-1.7,0.5C21.8,38.5,20.8,37.6,20.8,36"></path>
+              </svg>
+            </button>
+          </Flex>
+        </Flex>
       </div>
     </section>
   );

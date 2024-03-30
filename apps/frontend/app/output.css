@@ -729,6 +729,30 @@ video {
   top: 0.25rem;
 }
 
+.end-0 {
+  inset-inline-end: 0px;
+}
+
+.right-20 {
+  right: 5rem;
+}
+
+.left-20 {
+  left: 5rem;
+}
+
+.-left-20 {
+  left: -5rem;
+}
+
+.-right-20 {
+  right: -5rem;
+}
+
+.-right-14 {
+  right: -3.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -918,6 +942,10 @@ video {
   height: 2.25rem;
 }
 
+.h-\[2\.4rem\] {
+  height: 2.4rem;
+}
+
 .h-\[75vh\] {
   height: 75vh;
 }
@@ -937,6 +965,26 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-\[2\.0rem\] {
+  height: 2.0rem;
+}
+
+.h-\[2\.2rem\] {
+  height: 2.2rem;
+}
+
+.h-\[27\.19px\] {
+  height: 27.19px;
+}
+
+.h-\[32px\] {
+  height: 32px;
+}
+
+.h-\[38px\] {
+  height: 38px;
 }
 
 .w-1 {
@@ -1019,6 +1067,10 @@ video {
   width: 100px;
 }
 
+.w-\[2\.4rem\] {
+  width: 2.4rem;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1039,6 +1091,26 @@ video {
 
 .w-auto {
   width: auto;
+}
+
+.w-\[2\.0rem\] {
+  width: 2.0rem;
+}
+
+.w-\[2\.2rem\] {
+  width: 2.2rem;
+}
+
+.w-\[27\.19px\] {
+  width: 27.19px;
+}
+
+.w-\[32px\] {
+  width: 32px;
+}
+
+.w-\[38px\] {
+  width: 38px;
 }
 
 .min-w-0 {
@@ -1431,6 +1503,11 @@ video {
   border-color: hsl(var(--nextui-warning) / var(--nextui-warning-opacity, var(--tw-border-opacity)));
 }
 
+.bg-\[\#f5f5f7\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 245 247 / var(--tw-bg-opacity));
+}
+
 .bg-background {
   background-color: hsl(var(--background));
 }
@@ -1502,6 +1579,11 @@ video {
   background-color: hsl(var(--nextui-warning) / var(--nextui-warning-opacity, var(--tw-bg-opacity)));
 }
 
+.bg-green-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
 .bg-accent {
   background-color: hsl(var(--accent));
 }
@@ -1514,6 +1596,16 @@ video {
 .bg-default-100 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--nextui-default-100) / var(--nextui-default-100-opacity, var(--tw-bg-opacity)));
+}
+
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-gray-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-br {
@@ -1556,6 +1648,10 @@ video {
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-\[0\.1rem\] {
+  padding: 0.1rem;
 }
 
 .px-3 {
@@ -1815,6 +1911,10 @@ video {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-60 {
+  opacity: 0.6;
 }
 
 .shadow {
@@ -2330,16 +2430,21 @@ video {
   animation-duration: 200ms;
 }
 
+.paused {
+  animation-play-state: paused;
+}
+
 .embla {
+  position: relative;
   max-width: 48rem;
   margin: auto;
-  --slide-height: 19rem;
   --slide-spacing: 2rem;
   --slide-size: 100%;
   --detail-medium-contrast: rgb(234, 234, 234);
   --text-medium-contrast-rgb-value: 99, 94, 105;
   --text-body: rgb(54, 49, 61);
   --text-high-contrast-rgb-value: 49, 49, 49;
+  --container-dots: rgb(66 66 69 / 70%);
 }
 
 .embla__viewport {
@@ -2360,38 +2465,22 @@ video {
 }
 
 .embla__slide__number {
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  border-radius: 1.8rem;
-  font-size: 4rem;
-  font-weight: 600;
+  border-radius: 4rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--slide-height);
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .embla__controls {
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1.8rem;
-}
-
-.embla__dots {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+  gap: 3rem;
+  margin-top: 1.5rem;
 }
 
 .embla__dot {
-  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
   background-color: transparent;
-  touch-action: manipulation;
   display: inline-flex;
   text-decoration: none;
   cursor: pointer;
@@ -2408,8 +2497,8 @@ video {
 
 .embla__dot:after {
   box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2418,6 +2507,10 @@ video {
 
 .embla__dot--selected:after {
   box-shadow: inset 0 0 0 0.2rem var(--text-body);
+}
+
+.toggleVideoButton {
+  fill: var(--text-body);
 }
 
 .file\:border-0::file-selector-button {

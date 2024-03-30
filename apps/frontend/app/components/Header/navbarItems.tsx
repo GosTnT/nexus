@@ -1,19 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { Flex } from "@radix-ui/themes";
+import { Flex, Link } from "@radix-ui/themes";
 
 export function NavbarItems() {
   const links = ["Serviços", "Jogadores", "Premium"];
   return (
     <>
-      <Flex>
+      <Flex gap="9">
         {links.map((link, index) => (
-          <Button
-            className="text-title opacity-90 hover:opacity-100  hover:no-underline"
-            variant="link"
-            key={index}
-          >
+          <Link className="text-white hover:opacity-80 " key={index}>
             {link}
-          </Button>
+          </Link>
         ))}
       </Flex>
     </>

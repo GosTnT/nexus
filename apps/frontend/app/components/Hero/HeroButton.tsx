@@ -1,8 +1,8 @@
 import { timeline } from "@/components/Hero/gsap/timeline";
-import { NexusButton } from "@/components/NexusUI/NexusButton";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
 export function HeroButton() {
   const button = useRef(null);
   useGSAP(() => {
@@ -18,7 +18,9 @@ export function HeroButton() {
   return (
     <>
       <Link to="/checkout">
-        <NexusButton ref={button}>Contrate agora</NexusButton>
+        <Button ref={button} size="lg">
+          Contrate Agora
+        </Button>
       </Link>
     </>
   );

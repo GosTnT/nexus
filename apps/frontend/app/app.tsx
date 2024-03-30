@@ -3,6 +3,7 @@ import HomePage from "@/containers/HomePage";
 import { store } from "@/store/store";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
+
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
@@ -23,7 +24,7 @@ const app = document.getElementById("root") as HTMLElement;
 const root = createRoot(app);
 root.render(
   <StrictMode>
-    <Theme>
+    <Theme appearance="dark" accentColor="blue" radius="large">
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>

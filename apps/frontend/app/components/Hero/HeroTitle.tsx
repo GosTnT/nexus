@@ -22,12 +22,7 @@ export function HeroTitle({}) {
         className="text-title font-general text-center tracking-wide-[.010em] "
         ref={heading}
       >
-        A plataforma{" "}
-        <p className="text-transparent tracking-wide bg-gradient-to-br from-[#FF6E8C] from-5% to-[#4b6cb7] to-60% bg-clip-text inline">
-          {" "}
-          líder{" "}
-        </p>
-        em ELO Boost
+        A plataforma líder em ELO Boost
       </Heading>
     </>
   );

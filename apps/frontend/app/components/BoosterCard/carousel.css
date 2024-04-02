@@ -1,0 +1,25 @@
+.booster {
+  width: 90%;
+  margin: auto;
+  --slide-spacing: 12rem;
+  --slide-size: 440px;
+  display: flex;
+  justify-content: center;
+}
+.booster__viewport {
+  overflow: hidden;
+  height: 580px;
+}
+.booster__container {
+  backface-visibility: hidden;
+  display: flex;
+  gap: 30px;
+  touch-action: pan-y;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.booster__slide {
+  flex: 0 0 var(--slide-size);
+  height: 350px;
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}

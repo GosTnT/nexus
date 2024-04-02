@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -48,61 +47,6 @@
     --ring: 224.3 76.3% 48%;
   }
 }
-
-@layer base {
-}
-* {
-  font-size: 18px;
-  @apply text-title font-general;
-}
-.embla {
-  --slide-spacing: 2rem;
-  --slide-size: 100%;
-  --detail-medium-contrast: rgb(234, 234, 234);
-  --text-medium-contrast-rgb-value: 99, 94, 105;
-  --text-body: rgb(54, 49, 61);
-  --text-high-contrast-rgb-value: 49, 49, 49;
-  --container-dots: rgb(66 66 69 / 70%);
-}
-.embla__viewport {
-  overflow: hidden;
-}
-.embla__container {
-  backface-visibility: hidden;
-  display: flex;
-  touch-action: pan-y;
-}
-.embla__slide {
-  flex: 0 0 var(--slide-size);
-}
-.embla__slide__number {
-  border-radius: 4rem;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-}
-.embla__controls {
-  margin-top: 1.5rem;
-}
-
-.embla__dot {
-  width: 2.6rem;
-  height: 2.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-.embla__dot:after {
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
-  content: "";
-}
-.embla__dot--selected:after {
-  box-shadow: inset 0 0 0 0.2rem var(--text-body);
-}
-.toggleVideoButton {
-  fill: var(--text-body);
+html {
+  background: gray;
 }

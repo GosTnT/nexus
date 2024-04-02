@@ -11,7 +11,6 @@ export default function HeroSection() {
       direction="column"
       align="center"
       justify="center"
-      className="h-[75vh]"
       gap="3"
       ref={container}
     >

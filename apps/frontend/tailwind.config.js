@@ -16,13 +16,6 @@ module.exports = {
     fontFamily: {
       general: ["Inter", "Helvetica"],
     },
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
         features: "#4B4B4B",

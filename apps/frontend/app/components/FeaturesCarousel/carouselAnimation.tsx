@@ -1,11 +1,10 @@
 import video from "@/images/large.mp4";
-import { Flex } from "@radix-ui/themes";
+import { Box, Flex } from "@radix-ui/themes";
 import { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { DotButton, useDotButton } from "./carouselDots";
-
 export default function CarouselAnimation() {
   type Content = {
     id: number;
@@ -17,14 +16,24 @@ export default function CarouselAnimation() {
       id: 1,
       video: video,
     },
-
     {
       id: 2,
       video: video,
     },
+    {
+      id: 3,
+      video: video,
+    },
+
+    {
+      id: 4,
+      video: video,
+    },
   ];
   const options: EmblaOptionsType = { align: "start", direction: "ltr" };
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+    Autoplay({ stopOnInteraction: true }),
+  ]);
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const autoplay = emblaApi?.plugins()?.autoplay;
@@ -43,36 +52,72 @@ export default function CarouselAnimation() {
     onNavButtonClick,
   );
 
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRefs = useRef<Record<number, HTMLVideoElement>>({});
-  function toggleVideo(video: any) {
-    const videoElement = videoRefs.current[video.id];
+  const [currentCarouselVideo, setCurrentCarouselVideo] =
+    useState<HTMLVideoElement | null>(null);
 
-    if (videoElement && videoElement.paused) {
-      videoElement.play();
-    } else if (videoElement) {
-      videoElement.pause();
+  useEffect(() => {
+    if (videoRefs.current[1]) {
+      // Se o primeiro vídeo estiver disponível
+      setCurrentCarouselVideo(videoRefs.current[1]); // Definir o primeiro vídeo como o atual
+    }
+  }, []);
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on("scroll", () => {
+        const selectedVideo = videoRefs.current[selectedIndex + 1];
+        setCurrentCarouselVideo(selectedVideo);
+      });
+    }
+  }, [emblaApi, selectedIndex]);
+  useEffect(() => {
+    if (!currentCarouselVideo) return;
+
+    const playHandler = () => {
+      setIsPlaying(true);
+    };
+
+    const pauseHandler = () => {
+      setIsPlaying(false);
+    };
+
+    currentCarouselVideo.addEventListener("play", playHandler);
+    currentCarouselVideo.addEventListener("pause", pauseHandler);
+
+    return () => {
+      currentCarouselVideo.removeEventListener("play", playHandler);
+      currentCarouselVideo.removeEventListener("pause", pauseHandler);
+    };
+  }, [currentCarouselVideo]);
+  function toggleVideo() {
+    if (!currentCarouselVideo) return;
+
+    if (isPlaying) {
+      currentCarouselVideo.play();
+    } else {
+      currentCarouselVideo.pause();
     }
   }
 
   return (
-    <section className="embla" dir="ltr">
+    <section className="embla " dir="ltr">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {videoContent.map((video) => (
-            <div className="embla__slide" key={video.id}>
-              <div className="embla__slide__number">
+            <div className="embla__slide flex justify-center" key={video.id}>
+              <Box className=" overflow-hidden rounded-[4rem]">
                 <video
                   ref={(element) => {
-                    // Armazena a referência para cada elemento de vídeo na matriz de referências
                     if (element) {
                       videoRefs.current[video.id] = element;
                     }
                   }}
                   autoPlay
-                  onClick={() => toggleVideo(video)}
+                  onClick={() => toggleVideo()}
                   src={video.video}
                 ></video>
-              </div>
+              </Box>
             </div>
           ))}
         </div>
@@ -91,13 +136,15 @@ export default function CarouselAnimation() {
               />
             ))}
             <button
-              onClick={() => {
-                console.log(emblaApi?.slidesInView);
-              }}
+              onClick={toggleVideo}
               className="absolute -right-14  bg-[#f5f5f7] toggleVideoButton w-[38px] h-[38px] rounded-full"
             >
               <svg viewBox="0 0 56 56">
-                <path d="M20.8,36V20c0-1.6,1-2.5,2.3-2.5c0.7,0,1.1,0.1,1.7,0.5l13.4,7.7c1.2,0.7,1.8,1.2,1.8,2.3 c0,1.1-0.6,1.6-1.8,2.3L24.8,38c-0.6,0.4-1,0.5-1.7,0.5C21.8,38.5,20.8,37.6,20.8,36"></path>
+                {currentCarouselVideo?.paused ? (
+                  <path d="M23.9,38.5h-2.3c-1.3,0-2.3-1-2.3-2.2V19.7c0-1.3,1.1-2.3,2.3-2.2h2.3c1.3,0,2.3,1,2.3,2.2v16.5 C26.2,37.5,25.2,38.5,23.9,38.5 M34.4,38.5c1.3,0,2.3-1,2.3-2.2V19.7c0-1.3-1.1-2.3-2.3-2.2h-2.3c-1.3,0-2.3,1-2.3,2.2v16.5 c0,1.3,1.1,2.3,2.3,2.2H34.4z"></path>
+                ) : (
+                  <path d="M20.8,36V20c0-1.6,1-2.5,2.3-2.5c0.7,0,1.1,0.1,1.7,0.5l13.4,7.7c1.2,0.7,1.8,1.2,1.8,2.3 c0,1.1-0.6,1.6-1.8,2.3L24.8,38c-0.6,0.4-1,0.5-1.7,0.5C21.8,38.5,20.8,37.6,20.8,36"></path>
+                )}
               </svg>
             </button>
           </Flex>

@@ -5,7 +5,7 @@ import { Flex } from "@radix-ui/themes";
 export default function Header() {
   return (
     <>
-      <Flex className="w-full p-6 justify-around">
+      <Flex justify="between" align="center">
         <Logo />
         <NavbarItems />
 

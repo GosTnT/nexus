@@ -37,9 +37,20 @@ export function BoosterCarousel() {
       orderId: "ABC123",
       date: "2024-04-01",
     },
-
     {
       id: 1,
+      image: gold,
+      reviewTitle: "Great booster!",
+      reviewText:
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+      stars: 5,
+      customerName: "John Doe",
+      orderId: "ABC123",
+      date: "2024-04-01",
+    },
+
+    {
+      id: 8,
       image: gold,
       reviewTitle: "Great booster!",
       reviewText:
@@ -70,7 +81,7 @@ export function BoosterCarousel() {
       date: "2024-04-02",
     },
     {
-      id: 3,
+      id: 7,
       image: silver,
       reviewTitle: "Good job!",
       reviewText: "consectetur adipiscing elit",

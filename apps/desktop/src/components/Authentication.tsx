@@ -11,7 +11,7 @@ export default function Authentication() {
   const [password, setPassword] = useState<string>("");
 
   const checkCredentials = async () => {
-    fetch("www.google.com")
+    fetch("https://www.google.com")
       .then((response) => {
         return response.json();
       })

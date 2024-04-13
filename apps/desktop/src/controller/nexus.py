@@ -8,8 +8,8 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 def lol_client_login(username, password):
-    riot_client_path = "C:\\Riot Games\\League of Legends\\LeagueClient.exe"
-    riot_proc_name = "RiotClientUx.exe" 
+    riot_proc_name = "CrBrowserMain"
+    league_client_name = "LeagueClientUx.exe"
 
     class ClientInfo:
         def __init__(self, riot_token, riot_port):

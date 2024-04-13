@@ -59,7 +59,6 @@ export function DetailsAddons() {
     );
 
     setAddonsOptions(updatedOptions);
-    // console.log(addonsOptions);
   };
 
   return (

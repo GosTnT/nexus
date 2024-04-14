@@ -1,4 +1,5 @@
 import psutil
+import time
 import requests
 import re
 import base64
@@ -9,7 +10,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 def lol_client_login(username, password):
     riot_proc_name = "CrBrowserMain"
-    league_client_name = "LeagueClientUx.exe"
+    #  league_client_name = "LeagueClientUx.exe"
 
     class ClientInfo:
         def __init__(self, riot_token, riot_port):
@@ -97,12 +98,24 @@ def lol_client_login(username, password):
         endpoint = (
             f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/session/credentials"
         )
+
         res = send_data_for_client(endpoint, headers, login_body)
-        print(res)
+
+        print(res.status_code)
+        storeurl = f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/authorization/userinfo"
+        while True:
+            lolstore = requests.post(storeurl, headers=headers, verify=False)
+            print(lolstore.status_code)
+            time.sleep(1)
+            if lolstore.status_code != 404:
+                print(lolstore.text)
+                break
+        # urluserinfo = f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/authorization/userinfo"
+        # userinfo = requests.get(urluserinfo, headers=headers, verify=False)
+        # print(userinfo.text)
 
     login_with_riot_proc_info()
 
 
 if __name__ == "__main__":
     lol_client_login("menorgamer123", "alan112233445566")
-    

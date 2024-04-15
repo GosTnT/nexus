@@ -9,6 +9,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+import Dashboard from "@/containers/Dashboard";
 import "./output.css";
 const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
+  },
+
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 const app = document.getElementById("root") as HTMLElement;

@@ -1781,6 +1781,11 @@ video {
   line-height: var(--nextui-line-height-tiny);
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .font-medium {
   font-weight: 500;
 }

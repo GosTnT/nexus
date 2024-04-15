@@ -23,6 +23,12 @@ async def lp_change(connection, event):
     print("The summoner was updated.")
 
 
+@connector.ws.register("/OnJsonApiEvent", event_types=("UPDATE",))
+async def apievent(connection, event):
+    print(event.uri)
+    print(f"onjsonapievent triggered {event.data}")
+
+
 # fired when League Client is closed (or disconnected from websocket)
 @connector.close
 async def disconnect(_):

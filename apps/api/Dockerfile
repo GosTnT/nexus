@@ -11,7 +11,6 @@ ARG PORT
 ENV PORT $PORT
 # Copy the rest of the application code
 COPY . /api
-RUN echo TTESTANDOTESTANDOTESTANDOTESTANDOTESTANDOTESTANDOESTANDO
 RUN echo $PORT
 
 CMD ["bash", "-c", "uvicorn main:app --port=$PORT --host=0.0.0.0"]

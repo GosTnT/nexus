@@ -1,4 +1,4 @@
-import video from "@/images/large.mp4";
+import video from "@/images/applevideo.mp4";
 import { Box, Flex } from "@radix-ui/themes";
 import { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";

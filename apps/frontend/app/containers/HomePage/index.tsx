@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <>
       {/* <img src={logo} className="opacity-15 absolute -z-10" /> */}
-      <div className="grid grid-flow-col grid-rows-12 grid-cols-12 ">
+      <div className="grid grid-flow-col grid-rows-12 grid-cols-12">
         <div className="col-start-2 row-start-1 row-span-11 col-end-12">
           <div className="grid  gap-y-52 grid-flow-col grid-rows-12 grid-cols-12">
             <div className="grid grid-rows-4 col-start-1 col-end-13">

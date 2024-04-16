@@ -5,7 +5,7 @@ export function DetailsHeader() {
     <Heading
       size="5"
       weight="medium"
-      className="text-title font-general text-center tracking-wide-[.010em] "
+      className="text-center text-title font-general tracking-wide-[.010em]"
     >
       Personalize seu pedido
     </Heading>

@@ -58,8 +58,8 @@ export function Sidebar() {
   };
 
   return (
-    <div className="grid grid-cols-8 ">
-      <div className=" col-span-2">
+    <div className="grid grid-cols-8">
+      <div className="col-span-2">
         {sidebarItems.map((option: SidebarItem) => (
           <button
             key={option.id}
@@ -74,7 +74,7 @@ export function Sidebar() {
         ))}
       </div>
 
-      <div className=" col-span-6 row-span-4 ">
+      <div className="col-span-6 row-span-4">
         <img
           src={sidebarItems[selectedImageIndex - 1]?.image}
           className=""

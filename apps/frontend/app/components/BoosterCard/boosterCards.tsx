@@ -5,10 +5,10 @@ import star from "@/images/rating-star-red.png";
 import icon from "@/images/124599.jpeg";
 export function BoosterCards() {
   return (
-    <div className="shadow-sm shadow-gray-600 w-2/6 h-3/6 grid justify-center grid-rows-5 rounded-3xl  p-8 gap-3">
+    <div className="grid grid-rows-5 gap-3 justify-center p-8 w-2/6 h-3/6 rounded-3xl shadow-sm shadow-gray-600">
       <Flex gap="3" className="">
         <Flex justify="center" align="center">
-          <div className="overflow-hidden h-11 w-11 rounded-full">
+          <div className="overflow-hidden w-11 h-11 rounded-full">
             <img src={icon} className="booster__slide__image" />
           </div>
         </Flex>
@@ -24,7 +24,7 @@ export function BoosterCards() {
         </Flex>
       </Flex>
 
-      <div className="flex flex-col row-span-3 auto-rows-max justify-center ">
+      <div className="flex flex-col row-span-3 auto-rows-max justify-center">
         <Heading className="">fodase</Heading>
         <Text className="">
           slc esse mano ai absurdo genio do league maluco tem um conhecimento mt

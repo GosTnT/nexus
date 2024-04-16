@@ -22,13 +22,13 @@ export default function Authentication() {
             <Input id="password" />
           </div>
           <Flex justify="end">
-            <Link className="text-subtext cursor-pointer underline-offset-4">
+            <Link className="cursor-pointer text-subtext underline-offset-4">
               Esqueceu sua senha?
             </Link>
           </Flex>
           <div className="space-y-1">
             <Flex justify="center">
-              <Button size="lg" className="w-56 m-4">
+              <Button size="lg" className="m-4 w-56">
                 Continuar
               </Button>
             </Flex>

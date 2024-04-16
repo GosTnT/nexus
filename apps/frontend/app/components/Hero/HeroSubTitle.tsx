@@ -18,7 +18,7 @@ export function HeroSubText() {
   return (
     <>
       <Text
-        className="text-gray-300 text-lg tracking-wide-[0.010em]"
+        className="text-lg text-gray-300 tracking-wide-[0.010em]"
         ref={subText}
       >
         Alcance o ranking dos seus <strong>sonhos </strong>

@@ -8,7 +8,7 @@ export default function LastCallToAction() {
       <Flex
         p={"9"}
         justify="between"
-        className="items-center self-center w-2/4 rounded-3xl bg-neutral-900 shadow-lg shadow-zinc-600 mt-20"
+        className="items-center self-center mt-20 w-2/4 rounded-3xl shadow-lg bg-neutral-900 shadow-zinc-600"
         gap="9"
       >
         <Flex direction="column" gap="4">

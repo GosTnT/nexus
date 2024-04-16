@@ -99,18 +99,18 @@ export function BoosterCarousel() {
           {boosterCards.map((card) => (
             <div
               key={card.id}
-              className="flex flex-col justify-center p-6 gap-5 booster__slide  overflow-hidden rounded-3xl shadow-lg   shadow-gray-700"
+              className="flex overflow-hidden flex-col gap-5 justify-center p-6 rounded-3xl shadow-lg booster__slide shadow-gray-700"
             >
               {/* <Flex */}
               {/*   direction="column" */}
               {/*   p="6" */}
               {/*   gap="5" */}
               {/*   justify="center" */}
-              {/*   className="overflow-hidden rounded-3xl shadow-lg   shadow-gray-700" */}
+              {/*   className="overflow-hidden rounded-3xl shadow-lg shadow-gray-700" */}
               {/* > */}
               <Flex gap="5">
                 <Flex justify="center" align="center">
-                  <div className="overflow-hidden h-11 w-11 rounded-full">
+                  <div className="overflow-hidden w-11 h-11 rounded-full">
                     <img src={icon} className="" />
                   </div>
                 </Flex>
@@ -128,7 +128,7 @@ export function BoosterCarousel() {
                 </Flex>
               </Flex>
 
-              <div className="flex flex-col gap-1 justify-center ">
+              <div className="flex flex-col gap-1 justify-center">
                 <Heading size="5">fodasefodasefodase</Heading>
                 <Text>
                   slc esse mano ai absurdo genio do league maluco tem um slc slc

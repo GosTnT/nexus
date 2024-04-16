@@ -6,7 +6,7 @@ export function NavbarItems() {
     <>
       <Flex gap="9">
         {links.map((link, index) => (
-          <Link className="text-white hover:opacity-80 " key={index}>
+          <Link className="text-white hover:opacity-80" key={index}>
             {link}
           </Link>
         ))}

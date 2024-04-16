@@ -10,7 +10,7 @@ export const Title = ({ children }: TitleProps) => {
     <Heading
       size="8"
       weight="medium"
-      className="text-title font-general text-center tracking-wide-[0.010em] "
+      className="text-center text-title font-general tracking-wide-[0.010em]"
     >
       {children}
     </Heading>
@@ -27,9 +27,9 @@ export const SubTitle = ({ children }: TitleProps) => {
 
 // import { Heading, Text } from "@radix-ui/themes";
 //
-// Heading = <Heading className="text-4xl font-semibold tracking-tight text-title mb-6">
+// Heading = <Heading className="mb-6 text-4xl font-semibold tracking-tight text-title">
 //
-// Text ()=> {    return(<Text className="text-lg leading-7 text-subtext mb-6">)}
+// Text ()=> {    return(<Text className="mb-6 text-lg leading-7 text-subtext">)}
 //     titleStyle = 'text-4xl font-semibold tracking-tight text-title';
 //
 //

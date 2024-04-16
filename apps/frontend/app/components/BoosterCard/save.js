@@ -60,15 +60,15 @@ date: "2024-04-01",
 return (
 <section className="booster">
 <div className="booster__viewport" ref={emblaRef}>
-<div className="booster__container ">
+<div className="booster__container">
 {boosterCards.map((card) => (
 <div
               key={card.id}
-              className="shadow-sm shadow-gray-600 grid justify-center grid-rows-5 rounded-3xl p-8 gap-3"
+              className="grid grid-rows-5 gap-3 justify-center p-8 rounded-3xl shadow-sm shadow-gray-600"
             >
 <Flex gap="3">
 <Flex justify="center" align="center">
-<div className="overflow-hidden h-11 w-11 rounded-full">
+<div className="overflow-hidden w-11 h-11 rounded-full">
 <img src={icon} className="booster__slide__image" />
 </div>
 </Flex>

@@ -26,14 +26,14 @@ export function CheckoutRank() {
     <Flex
       direction="column"
       justify="between"
-      className="border border-red-500 h-full"
+      className="h-full border border-red-500"
       p="7"
     >
       <Flex direction="column" gap="3">
         <Heading
           size="5"
           weight="medium"
-          className="text-title font-general text-center tracking-wide-[.010em] "
+          className="text-center text-title font-general tracking-wide-[.010em]"
         >
           Insira seu nome de invocador
         </Heading>

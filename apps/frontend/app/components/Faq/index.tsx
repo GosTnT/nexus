@@ -4,7 +4,7 @@ import { Flex } from "@radix-ui/themes";
 import { useState } from "react";
 function FaqMessage() {
   return (
-    <Flex className="p-6 bg-neutral-900 w-1/4 ">
+    <Flex className="p-6 w-1/4 bg-neutral-900">
       <p>
         A Regalis mantém total anonimato e privacidade dos seus clientes. Nossos
         jogadores de ponta são extremamente confiáveis e jamais enviarão
@@ -28,11 +28,11 @@ function FaqRadio() {
 
   return (
     <>
-      <Flex className="w-full justify-center gap-9 radius">
+      <Flex className="gap-9 justify-center w-full radius">
         <Flex className="flex-col gap-3">
           <Flex justify={"center"} className="items-center">
             <hr className="w-full border-t border-gray-500" />
-            <div className="w-3 h-3 rounded-full bg-gray-500"></div>
+            <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
           </Flex>
           <RadioGroup value={selected} onValueChange={setSelected}>
             {faqQuestions.map((faq, index) => (

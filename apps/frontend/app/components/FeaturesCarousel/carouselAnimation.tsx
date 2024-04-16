@@ -101,12 +101,12 @@ export default function CarouselAnimation() {
   }
 
   return (
-    <section className="embla " dir="ltr">
+    <section className="embla" dir="ltr">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {videoContent.map((video) => (
-            <div className="embla__slide flex justify-center" key={video.id}>
-              <Box className=" overflow-hidden rounded-[4rem]">
+            <div className="flex justify-center embla__slide" key={video.id}>
+              <Box className="overflow-hidden rounded-[4rem]">
                 <video
                   ref={(element) => {
                     if (element) {
@@ -124,7 +124,7 @@ export default function CarouselAnimation() {
       </div>
 
       <div className="embla__controls">
-        <Flex align="center" justify="center" className=" w-full relative">
+        <Flex align="center" justify="center" className="relative w-full">
           <Flex className="relative" align="center" justify="center">
             {scrollSnaps.map((_, index) => (
               <DotButton

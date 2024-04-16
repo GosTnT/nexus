@@ -2,7 +2,7 @@ import { Box, Flex, TextArea } from "@radix-ui/themes";
 export function Chat() {
   return (
     <>
-      <div className="p-12 col-start-9 col-span-4 row-start-2 row-span-10 bg-zinc-800 rounded-3xl">
+      <div className="col-span-4 col-start-9 row-start-2 p-12 rounded-3xl row-span-10 bg-zinc-800">
         <Flex direction="column" justify="between" className="h-full">
           <Flex>
             <Box> </Box>
@@ -11,7 +11,7 @@ export function Chat() {
             <TextArea
               placeholder="Mensagem..."
               variant="surface"
-              className="rounded-2xl"
+              className="rounded-3xl"
             />
           </div>
         </Flex>

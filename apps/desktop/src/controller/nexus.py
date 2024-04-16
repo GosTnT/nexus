@@ -1,9 +1,9 @@
 import psutil
-import time
 import requests
 import re
 import base64
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from lcu import connector
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -90,32 +90,27 @@ def lol_client_login(username, password):
         headers = create_request_info(client_info)
 
         login_body = {"username": username, "password": password, "persistLogin": False}
-        body = {"clientId": "riot-client", "trustLevels": ["always_trusted"]}
-        endpoint = (
-            f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v2/authorizations"
-        )
-        # requests.post(endpoint, json=body, headers=headers, verify=False)
         endpoint = (
             f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/session/credentials"
         )
 
         res = send_data_for_client(endpoint, headers, login_body)
 
-        print(res.status_code)
+        body = {"clientId": "riot-client", "trustLevels": ["always_trusted"]}
+        endpoint = (
+            f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v2/authorizations"
+        )
+        authres = requests.post(endpoint, json=body, headers=headers, verify=False)
+        print(authres.text)
+
+        print(res.text)
         storeurl = f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/authorization/userinfo"
-        while True:
-            lolstore = requests.post(storeurl, headers=headers, verify=False)
-            print(lolstore.status_code)
-            time.sleep(1)
-            if lolstore.status_code != 404:
-                print(lolstore.text)
-                break
-        # urluserinfo = f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/authorization/userinfo"
-        # userinfo = requests.get(urluserinfo, headers=headers, verify=False)
-        # print(userinfo.text)
+        userinfores = requests.post(storeurl, headers=headers, verify=False)
+        print(userinfores.text)
 
     login_with_riot_proc_info()
 
 
 if __name__ == "__main__":
-    lol_client_login("menorgamer123", "alan112233445566")
+    lol_client_login("menorgamer", "alan112233445566")
+    connector.start()

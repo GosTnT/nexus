@@ -1,4 +1,4 @@
-from lcu_driver import Connector
+from connector_driver import Connector
 
 connector = Connector()
 
@@ -9,7 +9,14 @@ async def connect(connection):
     print("LCU API is ready to be used.")
 
 
-@connector.ws.register("/lol-summoner/v1/current-summoner", event_types=("UPDATE",))
+@connector.ws.register(
+    "/lol-summoner/v1/current-summoner",
+    event_types=(
+        "UPDATE",
+        "CREATE",
+        "DELETE",
+    ),
+)
 async def icon_changed(connection, event):
     print(event.data)
     print("The summoner was updated.")
@@ -23,7 +30,14 @@ async def lp_change(connection, event):
     print("The summoner was updated.")
 
 
-@connector.ws.register("/OnJsonApiEvent", event_types=("UPDATE",))
+@connector.ws.register(
+    "/OnJsonApiEvent",
+    event_types=(
+        "UPDATE",
+        "CREATE",
+        "DELETE",
+    ),
+)
 async def apievent(connection, event):
     print(event.uri)
     print(f"onjsonapievent triggered {event.data}")
@@ -35,5 +49,5 @@ async def disconnect(_):
     print("The client have been closed!")
 
 
-# starts the connector
-connector.start()
+if __name__ == "__main__":
+    connector.start()

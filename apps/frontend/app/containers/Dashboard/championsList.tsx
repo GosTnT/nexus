@@ -1,17 +1,15 @@
-import { EditChampionDialog } from "./editChampionDialog";
 import olaf from "@/images/olaficon.png";
 import { Avatar, Flex, Heading } from "@radix-ui/themes";
+import { EditChampionDialog } from "./editChampionDialog";
 
 export function ChampionsList({}) {
   return (
-    <div className="col-span-4 col-start-3 row-span-5 row-start-6 justify-center p-8 rounded-3xl bg-zinc-800">
-      <Flex direction="column" className="h-full" gap="5">
-        <Heading className="text-center" size="7">
-          Campeões
-        </Heading>
-        <ChampionsRender />
-      </Flex>
-    </div>
+    <Flex direction="column" className="h-full" gap="3">
+      <Heading className="text-center text-zinc-400" weight="medium">
+        Campeões
+      </Heading>
+      <ChampionsRender />
+    </Flex>
   );
 }
 function ChampionsRender() {

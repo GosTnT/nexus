@@ -18,10 +18,18 @@ export function HeroButton() {
 
   return (
     <>
-      <Link to="/checkout">
+      <Link className="flex gap-5" to="/checkout">
         <Button ref={button} size="lg">
           Contrate Agora
         </Button>
+
+        {/* <Button */}
+        {/*   variant="outline" */}
+        {/*   className="font-general bg-transparent border border-zinc-700" */}
+        {/*   size="lg" */}
+        {/* > */}
+        {/*   Conheça os boosters */}
+        {/* </Button> */}
       </Link>
     </>
   );

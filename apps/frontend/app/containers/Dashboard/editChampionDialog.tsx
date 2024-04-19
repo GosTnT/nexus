@@ -12,8 +12,8 @@ export function EditChampionDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" className="border border-zinc-500">
-          Edit Profile
+        <Button variant="ghost" className="border border-foreground">
+          Editar
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -23,7 +23,7 @@ export function EditChampionDialog() {
           </DialogTitle>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit">Salvar</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

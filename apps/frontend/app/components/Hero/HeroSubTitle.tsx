@@ -17,13 +17,11 @@ export function HeroSubText() {
 
   return (
     <>
-      <Text
-        className="text-lg text-gray-300 tracking-wide-[0.010em]"
-        ref={subText}
-      >
-        Alcance o ranking dos seus <strong>sonhos </strong>
-        sem esforço
-        <br /> com os nossos serviços de eloboosting
+      <Text className="font-general text-zinc-400 " ref={subText}>
+        {/* Eloboost como você sempre sonhou, aqui você controla do começo ao fim. */}
+        {/* O seu resultado é a nossa prioridade,você control cada detalhe. */}
+        Alcance o elo que você deseja <strong>sem estresse</strong> com os
+        nossos serviços.
       </Text>
     </>
   );

@@ -11,7 +11,7 @@ import { EmblaOptionsType } from "embla-carousel";
 
 export function BoosterCarousel() {
   const options: EmblaOptionsType = { loop: true };
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+  const [emblaRef, _] = useEmblaCarousel(options, [
     AutoScroll({ playOnInit: false }),
   ]);
   type BoosterCard = {

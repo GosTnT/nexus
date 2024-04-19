@@ -16,8 +16,15 @@ export function HeroTitle({}) {
   });
   return (
     <>
-      <Heading highContrast className="text-5xl tracking-wide" ref={heading}>
-        A plataforma líder em ELO Boost
+      <Heading
+        size="9"
+        weight="bold"
+        className=" text-zinc-100 tracking-[0.01em]"
+        ref={heading}
+      >
+        Não perca mais tempo
+        <br /> com jogadores ruins.
+        {/* A plataforma líder em Elo Boost. */}
       </Heading>
     </>
   );

@@ -11,11 +11,11 @@ export function Login() {
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="link" className="text-primary">
-            <RxPerson size="25" />
+          <Button variant="link">
+            <RxPerson size="28" className="fill-red-400" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="dark bg-background sm:max-w-[425px]">
           <Authentication />
         </DialogContent>
       </Dialog>

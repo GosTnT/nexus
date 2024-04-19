@@ -4,13 +4,11 @@ import { NavbarItems } from "@/components/Header/navbarItems";
 import { Flex } from "@radix-ui/themes";
 export default function Header() {
   return (
-    <>
-      <Flex justify="between" align="center">
-        <Logo />
-        <NavbarItems />
+    <Flex justify="between" align="center">
+      <Logo />
+      <NavbarItems />
 
-        <Login />
-      </Flex>
-    </>
+      <Login />
+    </Flex>
   );
 }

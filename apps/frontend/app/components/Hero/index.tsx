@@ -7,13 +7,7 @@ export default function HeroSection() {
   const container = useRef(null);
 
   return (
-    <Flex
-      direction="column"
-      align="center"
-      justify="center"
-      gap="3"
-      ref={container}
-    >
+    <Flex direction="column" gap="3" ref={container}>
       <HeroTitle />
       <HeroSubText />
       <HeroButton />

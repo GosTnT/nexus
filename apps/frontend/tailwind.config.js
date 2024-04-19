@@ -2,26 +2,18 @@
 
 const { nextui } = require("@nextui-org/theme");
 module.exports = {
-  darkMode: ["class"],
   content: [
     "./app/components/ui/*.{ts,tsx}",
-    "./app/components/*.{ts,tsx}",
+    "./app/**/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
     "./index.html",
-    "./app/",
-    "./app/components/**/*.{ts,tsx}",
     "../../node_modules/@nextui-org/theme/dist/components/radio.js",
   ],
   prefix: "",
+
   theme: {
-    fontFamily: {
-      general: ["Inter", "Helvetica"],
-    },
     extend: {
       colors: {
-        features: "#4B4B4B",
-        semi_black: "#171717",
-        title: "#F5F5F7",
-        subtext: "#86868B",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -15,19 +15,6 @@ export function ChampionsList({}) {
 function ChampionsRender() {
   const championsList = [
     { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
-    { name: "Olaf", image: olaf },
 
     // Adicione mais campeões conforme necessário
   ];

@@ -2,11 +2,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import templateAvatar from "@/images/124599.jpeg";
 import { Flex, Heading, Text } from "@radix-ui/themes";
-
-export function BoosterProfile({}) {
+export function BoosterProfile() {
   return (
     <>
-      <Flex direction="column" gap="4" p="6" className="h-full">
+      <Flex
+        direction="column"
+        justify="center"
+        align="center"
+        className="h-full"
+        gap="4"
+      >
         <Flex justify="center" direction="column" align="center" gap="2">
           <Avatar className="w-20 h-20">
             <AvatarImage src={templateAvatar} />
@@ -19,12 +24,18 @@ export function BoosterProfile({}) {
             </Text>
           </Flex>
         </Flex>
-        <Flex className="w-full" justify="center" align="center">
+        <Flex className="w-full" gap="2" justify="center" align="center">
           <Button className="bg-red-500">
             <Heading size="1">Solicitar outro</Heading>
           </Button>
           <Button>Enviar doação</Button>
         </Flex>
+        {/*         <Flex justify="center" align="center"> */}
+        {/*         <Button className="flex gap-2 rounded-sm w-44"> */}
+        {/*           <RiMessage2Fill /> */}
+        {/*           Chat */}
+        {/*         </Button> */}
+        {/* </Flex> */}
       </Flex>
     </>
   );

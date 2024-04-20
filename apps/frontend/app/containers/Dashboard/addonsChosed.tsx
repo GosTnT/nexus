@@ -18,14 +18,17 @@ export function AddonsChosed() {
             Adicionais
           </Heading>
 
-          <Flex direction="column" gap="3">
+          <Flex direction="column" gap="2" justify="between">
             {Addons.map((addon, index) => (
-              <Flex gap="2" align="center">
-                <FaCheckCircle className="  fill-primary-400" />
+              <Flex direction="column" gap="1" justify="center">
+                <Flex gap="3" align="center">
+                  <FaCheckCircle className=" p-0 m-0 fill-primary-400 text-xl" />
+                  <Heading size="4" weight="medium" key={index} className="">
+                    {addon}
+                  </Heading>
+                </Flex>
 
-                <Heading size="4" weight="medium" key={index}>
-                  {addon}
-                </Heading>
+                {/* <Separator className="bg-zinc-500" size="4" /> */}
               </Flex>
             ))}
           </Flex>

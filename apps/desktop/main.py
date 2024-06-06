@@ -23,7 +23,7 @@ def main():
         resizable=False,
         frameless=True,
     )
-    webview.start(http_server=True)
+    webview.start(http_server=True,debug=True)
 
 
 if __name__ == "__main__":

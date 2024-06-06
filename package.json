@@ -1,12 +1,11 @@
 {
   "name": "nexus",
-  "private": true,
+  "private": true,  
   "scripts": {
     "docker": "make docker-up",
     "docker-build": "make docker-build",
     "docker_down": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

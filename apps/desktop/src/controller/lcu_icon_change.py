@@ -1,4 +1,4 @@
-from connector_driver import Connector
+from lcu_connector_driver import Connector
 
 connector = Connector()
 

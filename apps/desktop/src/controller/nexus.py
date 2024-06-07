@@ -72,6 +72,7 @@ class Request:
         return
     def send_auth_request(self,port,token):
         login_endpoint = f"https://127.0.0.1:{port}/rso-auth/v1/session/credentials"
+        self.refresh_session(port,token)
         response = requests.put(login_endpoint, json=self.prepare_login_body(), headers=self.prepare_headers(port,token), verify=False)
         return response
     def prepare_login_body(self):
@@ -103,6 +104,23 @@ class Request:
             "Accept-Language": "en-US,en;q=0.9",
         }
         return headers
+    def refresh_session(self,port,token):
+        session = requests.Session()
+        try:
+            body = {"clientId":"riot-client","trustLevels":["always_trusted"]}
+            endpoint = (
+                f"https://127.0.0.1:{port}/rso-auth/v2/authorizations"
+            )
+            retry = Retry(connect=3,backoff_factor=0.5)
+            adapter = HTTPAdapter(max_retries=retry)
+            session.verify = False
+            session.mount(endpoint,adapter)
+            self.prepare_headers(port,token)
+            authres = session.post(endpoint)
+            logger.info(f"{authres.text}")
+        except:
+            logger.error(authres.text)
+    
      
 class RiotClient():
     def __init__(self):
@@ -124,25 +142,7 @@ class RiotClient():
         self.league_is_ready()
     #     endpoint = (
     #      f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/session/credentials"
-    #  )
-        session = requests.Session()
-        try:
-            body = {"clientId":"riot-client","trustLevels":["always_trusted"]}
-            endpoint = (
-                f"https://127.0.0.1:{self.port}/rso-auth/v2/authorizations"
-            )
-            retry = Retry(connect=3,backoff_factor=0.5)
-            adapter = HTTPAdapter(max_retries=retry)
-            session.mount(endpoint,adapter)
-            session.verify = False
-            authres = session.post(endpoint)
-            logger.info(f"{authres.text}")
-        except:
-            logger.error(authres.text)
-            
-            
-            
-            
+    #  )            
         self.login()
 
     def league_is_ready(self):
@@ -201,14 +201,7 @@ class Extract:
         else:
             return None
 
-        
-    # def port(self,riot_cmd_line):
-    #     for arg in riot_cmd_line:
-    #         if arg.startswith("--app-port"):
-    #             riot_port = arg.split("=")[1]
-    #             return riot_port
-    #     return None
-
+    
 class RiotInfo():
     def __init__(self):
         self.cmd_line = None
@@ -224,7 +217,12 @@ if __name__ == "__main__":
     riot_client = RiotClient()
     riot_client.run()
     
-
+    # def port(self,riot_cmd_line):
+    #     for arg in riot_cmd_line:
+    #         if arg.startswith("--app-port"):
+    #             riot_port = arg.split("=")[1]
+    #             return riot_port
+    #     return None
     # cmd_line = extract.cmd_line(riot_client.pid,procs.process_list)
     # riot_client.token = extract.token(" ".join(cmd_line))
 

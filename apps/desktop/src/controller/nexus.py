@@ -71,16 +71,17 @@ class Request:
     def __init__(self):
         return
     def send_auth_request(self,port,token):
-        login_endpoint = f"https://127.0.0.1:{port}/rso-auth/v1/session/credentials"
-        self.refresh_session(port,token)
-        response = requests.put(login_endpoint, json=self.prepare_login_body(), headers=self.prepare_headers(port,token), verify=False)
+        try:
+            login_endpoint = f"https://127.0.0.1:{port}/rso-auth/v1/session/credentials"
+            response = requests.put(login_endpoint, json=self.prepare_login_body(), headers=self.prepare_headers(port,token), verify=False)
+        except Exception as e:
+            logger.error(f"{str(e)}, {response}")
         return response
     def prepare_login_body(self):
         username = "menorgamer123"
         password = "alan112233445566"
         
         login_body = {"username":username, "password":password, "persistLogin": False}
-        logger.info(login_body)
         return login_body
     def prepare_headers(self,port,token):
         headers = {
@@ -105,31 +106,25 @@ class Request:
         }
         return headers
     def refresh_session(self,port,token):
-        session = requests.Session()
         try:
             body = {"clientId":"riot-client","trustLevels":["always_trusted"]}
             endpoint = (
                 f"https://127.0.0.1:{port}/rso-auth/v2/authorizations"
             )
-            retry = Retry(connect=3,backoff_factor=0.5)
-            adapter = HTTPAdapter(max_retries=retry)
-            session.verify = False
-            session.mount(endpoint,adapter)
-            self.prepare_headers(port,token)
-            authres = session.post(endpoint)
-            logger.info(f"{authres.text}")
-        except:
-            logger.error(authres.text)
+            refresh_session = requests.post(endpoint,json=body,headers=self.prepare_headers(port,token),verify=False)
+            logger.info(f"session refresh: {refresh_session.status_code}")
+        except Exception as exception:
+            logger.info(exception)
     
      
 class RiotClient():
     def __init__(self):
-        
+        self.ports_list = []
         self.utils = Utils()
         self.path = self.utils.create_temp_shortcut()
         self.port = self.utils.find_open_port()
         self.riot_proc_name = os.getenv("RIOT_PROC_NAME")
-        self.command = f'"{self.path}" {f"--app-port={self.port} --allow-multiple-clients"}'
+        self.command = f'"{self.path}" {f"--app-port={self.port} --allow-multiple-clients --launch-product=league_of_legends --launch-patchline=live"}'
         self.token = None
         self.pid = None
         self.extract = Extract()
@@ -138,23 +133,32 @@ class RiotClient():
         
         
     def run(self):
-        self.open()
-        self.league_is_ready()
-    #     endpoint = (
-    #      f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/session/credentials"
-    #  )            
+        timeout = 10  # Tempo limite em segundos
+        start_time = time.time()
+        if not self.league_is_ready():
+            self.open()
+            while not self.league_is_ready():
+                if time.time() - start_time > timeout:
+                   logger.error("Tempo limite excedido ao aguardar processo League of Legends.")
+                   break
+                time.sleep(0.2)
+                logger.debug("Pegando todos os processos novamente")
+              
+                    
+       
+            
+         
         self.login()
 
     def league_is_ready(self):
         logger.info("Procurando por processos...")
-        while self.token is None:
-            processes = self.process.get()
-            for proc in processes:
-                cmdline = " ".join(proc["cmdline"])
-                self.token = self.extract.token(cmdline)
-                if self.token:
-                    logger.info(f"Token {self.token}")
-                    return True
+        processes = self.process.get()
+        for proc in processes:
+            cmdline = " ".join(proc["cmdline"])
+            self.token = self.extract.token(cmdline)
+            if self.token:
+                logger.info(f"Token {self.token}")
+                return True
         return False
                 
     
@@ -169,6 +173,7 @@ class RiotClient():
         process = subprocess.Popen(self.command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         if process.pid:
             logger.info(f"League Opened")
+            self.ports_list.append(self.port)
             self.pid = process.pid
             return
         else:
@@ -228,7 +233,9 @@ if __name__ == "__main__":
 
     # headers = (request.format_headers(riot_client))
  
-    
+        #     endpoint = (
+    #      f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/session/credentials"
+    #  )   
     # riot_client.login(headers,login_body)
    
 

@@ -1,41 +1,63 @@
 
-from typing import  List, Union,ByteString
-from enum import Enum
-from dataclasses import dataclass
-class Status(Enum):
-    WAITING = "waiting"
-    AUTHENTICATED = "authenticated"
-    DONE = "done"
+import threading
+from logger_cfg import log
+from queue import Queue
 
-@dataclass
+
 class ClientDict:
-    token: str
-    port: int
-    status: Status
+    def __init__(self, token: str, port: int):
+        self.token = token
+        self.port = port
 
 class RiotClientManager:
     def __init__(self):
-        self.clients: List[ClientDict] = []
-    
-    def add(self, token: str, port: int, status: Status) -> None:
-        client = ClientDict(token=token, port=port, status=status)
-        self.clients.append(client)
-    
+        self.clients = Queue()
+        self.lock = threading.Lock()
+        self.removed_clients = []
+
+    def add(self, token: str, port: int) -> None:
+        with self.lock:
+            client = ClientDict(token=token, port=port)
+            self.clients.put(client)
+            log.info(f"Added client: token={token}, port={port}")
+
     def remove(self, port: int) -> None:
-        self.clients = [client for client in self.clients if client.port != port]
-    
-    def get_by_port(self, port: int) -> Union[ClientDict, None]:
-        for client in self.clients:
-            if client.port == port:
+        with self.lock:
+            qsize = self.clients.qsize()
+            removed_clients = []
+            for _ in range(qsize):
+                client = self.clients.get()
+                if client.port != port:
+                    removed_clients.append(client)
+            for client in removed_clients:
+                self.removed_clients.append(client)
+                self.clients.put(client)
+            log.info(f"Removed client with port: {port}")
+
+    def client_exists(self, port: int) -> bool:
+        with self.lock:
+            # Verifica os clientes na fila
+            for client in self.clients.queue:
+                if client.port == port:
+                    return True
+            # Verifica os clientes removidos
+            for client in self.removed_clients:
+                if client.port == port:
+                    return True
+        return False    
+    def is_available(self):
+        with self.lock:
+            return self.clients.qsize() > 0
+        
+    def get_next_free_client(self) -> ClientDict |None:
+        with self.lock:
+            try:
+                client = self.clients.get_nowait()
+                self.removed_clients.append(client)
+                log.info(f"Got client from queue: {client.port}")
                 return client
-        return None
-    
-    def update_status_by_port(self, port: int, new_status: Status) -> None:
-        client = self.get_by_port(port)
-        if client:
-            client.status = new_status
-    def get_clients_by_status(self, status: Status) -> List[ClientDict]:
-        return [client for client in self.clients if client.status == status]        
-    
+            except Exception as e:
+                return None
     def __repr__(self) -> str:
-        return f"ClientManager(clients={self.clients})"
+        with self.lock:
+            return f"ClientManager(clients={list(self.clients.queue)})"

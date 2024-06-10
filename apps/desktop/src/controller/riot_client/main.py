@@ -1,15 +1,20 @@
 import time
 import subprocess
+import time
 from utils import Utils
 from account import Account
 import requests
 from logger_cfg import logger
 from process import CommandLine, Process
-from client_manager import RiotClientManager, Status
+from client_manager import RiotClientManager
 import urllib3
+from threading import Thread
+import os
+from dotenv import load_dotenv
 import json
+from lcu_connector import start_connector
 urllib3.disable_warnings()
-
+load_dotenv()
 
 class Request():
     def __init__(self):
@@ -20,8 +25,6 @@ class Request():
         headers= Utils.prepare_headers(port,token)
         json_body = json.dumps(body)
         uri = f"{self.base_url}:{port}/{endpoint}"
-        logger.debug(f"uri: {uri}")
-        logger.debug(f"headers:{headers}")
         response =requests.put(url=uri,headers=headers,data=json_body,verify=False)
         
         if response.status_code == 201:
@@ -31,31 +34,17 @@ class Request():
 
 
 class RiotClient():
-    def __init__(self,login_credentials):
+    def __init__(self,login_credentials,riot_client_manager):
         self.login_credentials = login_credentials
         self.request = Request()
-        self.riot_client_manager = RiotClientManager()
-        
-    
-    def find_open(self):
-        
+        self.riot_client_manager = riot_client_manager
         self.process = Process()
         self.command_line = CommandLine()
-        processes = self.process.get_riot_client()
-        for proc in processes:
-            cmdline = " ".join(proc["cmdline"])
-            token = self.command_line.get_token(cmdline)
-            port = self.command_line.get_port(cmdline)
-            if port and token:
-                logger.debug(f"port:{port}\n token:{token}")
-                if not self.riot_client_manager.get_by_port(port=port):
-                    self.riot_client_manager.add(port=port,token=token,status=Status.WAITING)
-                    return True
-        return False
- 
+    
+   
+#  
     def open(self):
-        path = Utils.create_temp_shortcut()
-        args = f'"{path}" {f"--allow-multiple-clients --launch-product=league_of_legends --launch-patchline=live"}'
+        args = f'"{os.getenv("RIOT_PATH")}" {f"--allow-multiple-clients --launch-product=league_of_legends --launch-patchline=live"}'
         process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         if process.pid:
             logger.info(f"League Opened")
@@ -63,40 +52,69 @@ class RiotClient():
         else:
             logger.error(f"Could'nt open League")
 
-   
-    def login(self):
+    def is_open(self):
+        while True:
+            processes = self.process.get_riot_client()
+            for proc in processes:
+                cmdline = " ".join(proc["cmdline"])
+                token = self.command_line.get_token(cmdline)
+                port = self.command_line.get_port(cmdline)
+                if port and token:
+                    if not self.riot_client_manager.client_exists(port=port):
+                        self.riot_client_manager.add(port=port,token=token)
+            
+    def login(self, client):
         endpoint = "rso-auth/v1/session/credentials"
-        if self.riot_client_manager.get_clients_by_status(Status.WAITING):
-            port = self.riot_client_manager.get_clients_by_status(Status.WAITING)[0].port
-            token = self.riot_client_manager.get_clients_by_status(Status.WAITING)[0].token
-            logger.debug(f"Token: {token}" ,f"port: {port}" )
-            if port and token:
-                self.request.put(port=port,token=token,endpoint=endpoint,body=self.login_credentials)
-                self.riot_client_manager.update_status_by_port(port=port,new_status=Status.AUTHENTICATED)
+        port = client.port
+        token = client.token
+        logger.debug(f"{port,token}")
+        if port and token:
+            self.request.put(port=port, token=token, endpoint=endpoint, body=self.login_credentials)
+            self.riot_client_manager.remove(port=port)
+            logger.info(f"Logged in client with port {port}{token}")
+        else:
+            logger.error(f"login doenst receive port or token {port,token}")
     def start(self):
-        if riot_client.find_open():
-            riot_client.login()
+        time.sleep(1)
+        client = self.riot_client_manager.get_next_free_client()
+        if client:
+            self.login(client)
             return
-        riot_client.open()
-        logger.debug("waiting for client to be available...")
-        while not riot_client.find_open():
-            time.sleep(2)
-            logger.debug("find_open_executing")
-        while not self.riot_client_manager.get_clients_by_status(status=Status.WAITING):
-            time.sleep(1)
-        riot_client.login()
+        self.open()
             
         
-            
-            
-    
+        while not self.riot_client_manager.is_available():
+            time.sleep(1)
+            logger.info("esperando")
+            pass
+        client = self.riot_client_manager.get_next_free_client()
+        logger.debug(f"client returned {client.port}")
+        self.login(client)
 
 if __name__ == "__main__":
     
+        
+    
     accounts = Account()
+    riot_manager = RiotClientManager()
+    
+    riot = RiotClient(login_credentials="a",riot_client_manager=riot_manager)
+    client_ready = Thread(target=riot.is_open,daemon=True)
+    client_ready.start()
+    
     for account in accounts.get():
-        riot_client = RiotClient(login_credentials=account)
-        riot_client.start()
+        riot_client = RiotClient(login_credentials=account,riot_client_manager=riot_manager)
+        client_open_thread = Thread(target=riot_client.start,name=f"client_open{account}",daemon=True)
+        client_open_thread.start()
+    
+    
+    
+        
+    connector_thread = Thread(target=start_connector, name="connector_listening",daemon=True)
+    connector_thread.start()
+ 
+    while True:
+        time.sleep(1)
         
         
  #   t = threading.Thread(target = riot_client.run)
@@ -106,3 +124,4 @@ if __name__ == "__main__":
 #     storeurl = f"https://127.0.0.1:{client_info.riot_port}/rso-auth/v1/authorization/userinfo"
 #     userinfores = requests.post(storeurl, headers=headers, verify=False)
 #     print(userinfores.text)
+# 

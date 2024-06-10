@@ -29,19 +29,7 @@ class Utils:
         return shortcut_path
     @staticmethod
     def prepare_headers(port, token):
-        """
-        Prepares and returns HTTP headers for a request.
-
-        This method constructs a dictionary of HTTP headers required for making requests to a local server. 
-        It includes headers for host, connection type, authorization, content type, and others necessary for CORS and HTTP requests.
-
-        Parameters:
-        - port (int): The port number of the local server to which the request is made.
-        - token (str): The authorization token used for the Basic Auth header.
-
-        Returns:
-        - dict: A dictionary containing the prepared HTTP headers.
-        """
+  
         headers = {
             "Host": f"127.0.0.1:{port}",
             "Connection": "keep-alive",

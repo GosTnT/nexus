@@ -7,9 +7,7 @@ from .connection import Connection
 from .events.managers import ConnectorEventManager, WebsocketEventManager
 from .utils import _return_ux_process
 
-logger = logging.getLogger('lcu-driver')
-
-
+from logger_cfg import logger
 class BaseConnector(ConnectorEventManager, ABC):
     def __init__(self, loop=None):
         super().__init__()
@@ -31,6 +29,59 @@ class BaseConnector(ConnectorEventManager, ABC):
         return True
 
 
+class MultipleClientConnector(BaseConnector):
+    
+    def __init__(self, *, loop=None):
+        super().__init__(loop=loop)
+        self.connections = {}
+        self.running = False
+
+    def register_connection(self, connection):
+        self.connections[connection.pid] = connection
+
+    def unregister_connection(self, lcu_pid):
+        if lcu_pid in self.connections:
+            del self.connections[lcu_pid]
+
+    @property
+    def should_run_ws(self) -> bool:
+        return True
+
+    def _process_was_initialized(self, non_initialized_connection):
+        for connection in self.connections:
+            if non_initialized_connection.pid == connection.pid:
+                return True
+        return False
+
+    async def _astart(self):
+        tasks = []
+        try:
+            while True:
+                process_iter = _return_ux_process()
+
+                process = next(process_iter, None)
+                while process:
+                    connection = Connection(self, process)
+                    if connection.pid not in self.connections:
+                        tasks.append(asyncio.create_task(connection.init()))
+                        self.connections[connection.pid] = connection
+                    else:
+                        pass
+
+                    process = next(process_iter, None)
+                await asyncio.sleep(0.2)
+
+        except KeyboardInterrupt:
+            logger.info('Event loop interrupted by keyboard')
+        finally:
+            await asyncio.gather(*tasks)
+            
+
+    def start(self) -> None:
+        self.loop.run_until_complete(self._astart())
+
+            
+ 
 class Connector(BaseConnector):
     def __init__(self, *, loop=None):
         super().__init__(loop)
@@ -40,7 +91,7 @@ class Connector(BaseConnector):
     def register_connection(self, connection):
         self.connection = connection
 
-    def unregister_connection(self, _):
+    def unregister_connection(self, lcu_pid):
         self.connection = None
 
     @property
@@ -81,49 +132,3 @@ class Connector(BaseConnector):
         if self.connection is not None:
             await self.connection._close()
 
-
-class MultipleClientConnector(BaseConnector):
-    def __init__(self, *, loop=None):
-        super().__init__(loop=loop)
-        self.connections = []
-
-    def register_connection(self, connection):
-        self.connections.append(connection)
-
-    def unregister_connection(self, lcu_pid):
-        for index, connection in enumerate(self.connections):
-            if connection.pid == lcu_pid:
-                del connection[index]
-
-    @property
-    def should_run_ws(self) -> bool:
-        return True
-
-    def _process_was_initialized(self, non_initialized_connection):
-        for connection in self.connections:
-            if non_initialized_connection.pid == connection.pid:
-                return True
-        return False
-
-    async def _astart(self):
-        tasks = []
-        try:
-            while True:
-                process_iter = _return_ux_process()
-
-                process = next(process_iter, None)
-                while process:
-                    connection = Connection(self, process)
-                    if not self._process_was_initialized(connection):
-                        tasks.append(asyncio.create_task(connection.init()))
-
-                    process = next(process_iter, None)
-                await asyncio.sleep(0.5)
-
-        except KeyboardInterrupt:
-            logger.info('Event loop interrupted by keyboard')
-        finally:
-            await asyncio.gather(*tasks)
-
-    def start(self) -> None:
-        self.loop.run_until_complete(self._astart())

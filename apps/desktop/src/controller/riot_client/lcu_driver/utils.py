@@ -19,11 +19,7 @@ def _return_ux_process() -> Generator[Process, None, None]:
 
         cmdline: List[str] = process.info.get("cmdline", [])
 
-        if process.name() in [
-            "LeagueClientUx.exe",
-            "LeagueClientUx",
-            "LeagueClient.exe",
-        ]:
+        if process.name() in ["LeagueClientUx.exe", "LeagueClientUx"]:
             yield process
 
         # Check cmdline for the executable, especially useful in Linux environments

@@ -1,41 +1,48 @@
 {
-  "name": "@nexus/desktop",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "pywebview-vue3-boilerplate",
+  "version": "2.0.0",
+  "description": "Build GUI applications with Python and Vue 3. A simple boilerplate based on pywebview.",
   "scripts": {
-    "tailwind": "npx tailwindcss -i ./src/lib/globals.css -o ./src/output.css --watch",
-    "dev": "vite",
-    "build": "tsc && vite build --watch",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "build": "npm run clean && npm run frontend:prod && run-script-os",
+    "build:macos": "python build-macos.py py2app",
+    "frontend:dev": "vite --config vite.config.js",
+    "clean": "run-script-os",
+    "clean:default": "rm -rf dist 2>/dev/null; rm -rf gui 2>/dev/null; rm -rf build 2>/dev/null;",
+    "clean:windows": "if exist dist rd /S /Q dist & if exist build rd /S /Q build & if exist gui rd /S /Q gui",
+    "dev": " vite --config vite.config.js & python src/index.py",
+    "init": "npm install && run-script-os",
+    "frontend:prod": "vite build --config vite.config.js --emptyOutDir",
+    "init:linux": "virtualenv -p python3 venv-pywebview && if [[ -z \"${KDE_FULL_SESSION}\" ]]; then npm run init:qt5; else npm run init:gtk; fi",
+    "init:gtk": "sudo apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 && ./venv-pywebview/bin/pip install pycairo pygobject -r requirements.txt",
+    "start": "npm run frontend:prod && run-script-os",
+    "start:default": "python src/index.py",
+    "start:windows": ".\\venv-pywebview\\Scripts\\python src\\index.py"
+  },
+  "keywords": [
+    "pywebview",
+    "vue",
+    "vue3",
+    "python",
+    "javascript"
+  ],
+  "author": "Roman Sirokov, Antonio Allen",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/roundisthecircle/pywebview-vue3-boilerplate/issues"
   },
   "dependencies": {
-    "@radix-ui/react-label": "^2.0.2",
-    "@radix-ui/react-slot": "^1.0.2",
-    "@radix-ui/react-tabs": "^1.0.4",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "lucide-react": "^0.364.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7"
+    "@vue/component-compiler-utils": "^3.3.0",
+    "pinia": "^2.0.14",
+    "vue": "^3.4.21",
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
-    "@types/node": "^20.12.2",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@parcel/transformer-vue": "^2.6.0",
+    "@vitejs/plugin-vue": "^2.3.3",
     "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "run-script-os": "^1.1.6",
+    "sass": "^1.72.0",
+    "vite": "^2.9.17"
   }
 }

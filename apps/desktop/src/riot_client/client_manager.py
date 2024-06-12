@@ -1,6 +1,6 @@
 
 import threading
-from logger_cfg import log
+from .logger_cfg import log
 from queue import Queue
 
 

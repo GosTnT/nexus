@@ -1,13 +1,11 @@
 import asyncio
-import logging
 import time
 from abc import ABC, abstractmethod
-
+from loguru import logger
 from .connection import Connection
 from .events.managers import ConnectorEventManager, WebsocketEventManager
 from .utils import _return_ux_process
 
-from logger_cfg import logger
 class BaseConnector(ConnectorEventManager, ABC):
     def __init__(self, loop=None):
         super().__init__()

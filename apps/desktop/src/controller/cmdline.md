@@ -1,1 +1,0 @@
-winel RiotClientServices.exe "--app-port=50000" "--remoting-auth-token=aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789" "--launch-product=league_of_legends" "--launch-patchline=live" "--locale=en_GB" "--disable-auto-launch" "--headless" "--allow-multiple-clients"

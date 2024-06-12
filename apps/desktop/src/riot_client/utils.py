@@ -2,7 +2,6 @@ import winshell
 from dotenv import load_dotenv
 import tempfile
 import os
-from logger_cfg import log
 
 load_dotenv()
 

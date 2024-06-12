@@ -24,6 +24,6 @@
 ---
 ##### Roda o pywebview usando os arquivos buildados acima
 
-#### `npm run webview`
+#### `python render.py`
 
 

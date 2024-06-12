@@ -1,5 +1,3 @@
-from logger_cfg import logger
-import subprocess
 import os
 import psutil
 import re 

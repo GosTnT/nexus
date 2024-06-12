@@ -1,18 +1,18 @@
 import time
 import subprocess
 import time
-from utils import Utils
-from account import Account
+from .utils import Utils
+from .account import Account
 import requests
-from logger_cfg import logger
-from process import CommandLine, Process
-from client_manager import RiotClientManager
+from .logger_cfg import logger
+from .process import CommandLine, Process
+from .client_manager import RiotClientManager
 import urllib3
 from threading import Thread
 import os
 from dotenv import load_dotenv
 import json
-from lcu_connector import start_connector
+from .lcu_connector import start_connector
 urllib3.disable_warnings()
 load_dotenv()
 
@@ -67,34 +67,26 @@ class RiotClient():
         endpoint = "rso-auth/v1/session/credentials"
         port = client.port
         token = client.token
-        logger.debug(f"{port,token}")
         if port and token:
             self.request.put(port=port, token=token, endpoint=endpoint, body=self.login_credentials)
             self.riot_client_manager.remove(port=port)
-            logger.info(f"Logged in client with port {port}{token}")
         else:
             logger.error(f"login doenst receive port or token {port,token}")
     def start(self):
         time.sleep(1)
-        client = self.riot_client_manager.get_next_free_client()
-        if client:
+        if self.riot_client_manager.is_available():
+            client = self.riot_client_manager.get_next_free_client()
             self.login(client)
             return
         self.open()
-            
-        
         while not self.riot_client_manager.is_available():
             time.sleep(1)
-            logger.info("esperando")
             pass
         client = self.riot_client_manager.get_next_free_client()
-        logger.debug(f"client returned {client.port}")
         self.login(client)
 
-if __name__ == "__main__":
-    
-        
-    
+def start_app():
+    logger.debug("app startedrun league")
     accounts = Account()
     riot_manager = RiotClientManager()
     
@@ -116,6 +108,12 @@ if __name__ == "__main__":
     while True:
         time.sleep(1)
         
+if __name__ == "__main__":
+    start_app()
+    
+        
+    
+  
         
  #   t = threading.Thread(target = riot_client.run)
     

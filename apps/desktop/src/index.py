@@ -5,6 +5,7 @@ def start(window):
     print("starting")
 
 if __name__ == '__main__':
-    window.expose(start_app)
-    webview.start(start,(window,),debug=True)
+    start_app()
+    ## webview.start(start,(window,),debug=True)
+
     

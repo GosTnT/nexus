@@ -1,6 +1,9 @@
 import time
 import subprocess
 import time
+
+from Scripts.bottle import error
+
 from .utils import Utils
 from .account import Account
 import requests
@@ -28,7 +31,7 @@ class Request():
         response =requests.put(url=uri,headers=headers,data=json_body,verify=False)
         
         if response.status_code == 201:
-            logger.info("User authenticated sucessfully ")
+            logger.info("User authenticated successfully ")
         else:
             logger.error(f"text: {response.text}, code: {response.status_code}")
 
@@ -42,15 +45,24 @@ class RiotClient():
         self.command_line = CommandLine()
     
    
-#  
-    def open(self):
-        args = f'"{os.getenv("RIOT_PATH")}" {f"--allow-multiple-clients --launch-product=league_of_legends --launch-patchline=live"}'
+#
+    def open():
+        args = r'C:\Riot Games\Riot Client\RiotClientServices.exe --allow-multiple-clients --launch-product=league_of_legends --launch-patchline=live'
         process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        if process.pid:
-            logger.info(f"League Opened")
-            return
+
+        # Wait for a short period to allow the process to start
+        time.sleep(5)
+
+        stdout, stderr = process.communicate()
+
+        if process.returncode == 0 and b'Error' not in stderr and b'Error' not in stdout:
+            logger.info("League of Legends opened successfully.")
+            return True
         else:
-            logger.error(f"Could'nt open League")
+            logger.error("Failed to open League of Legends.")
+            logger.error(f"stdout: {stdout.decode('utf-8')}")
+            logger.error(f"stderr: {stderr.decode('utf-8')}")
+            return False
 
     def is_open(self):
         while True:
@@ -78,15 +90,17 @@ class RiotClient():
             client = self.riot_client_manager.get_next_free_client()
             self.login(client)
             return
-        self.open()
-        while not self.riot_client_manager.is_available():
-            time.sleep(1)
-            pass
-        client = self.riot_client_manager.get_next_free_client()
-        self.login(client)
+        if self.open():
+            while not self.riot_client_manager.is_available():
+                time.sleep(1)
+                pass
+            client = self.riot_client_manager.get_next_free_client()
+            self.login(client)
+            return
+        raise 'league didn"t open sucessefully'
+
 
 def start_app():
-    logger.debug("app startedrun league")
     accounts = Account()
     riot_manager = RiotClientManager()
     

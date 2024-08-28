@@ -40,7 +40,7 @@ export default defineConfig({
     target: "es2015",
     rollupOptions: {
       input: {
-        main: resolve("./src/main.jsx"),
+        main: resolve("./src/App.vue"),
       },
       output: {
         chunkFileNames: undefined,

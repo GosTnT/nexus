@@ -23,7 +23,7 @@ class CommandLine():
         
 class Process:
     def __init__(self):
-        self.riot_proc_name = os.getenv("RIOT_PROC_NAME")
+        self.riot_proc_name = 'Riot Client.exe'
         self.riot_processes =  []
         return
     def get_riot_client(self):

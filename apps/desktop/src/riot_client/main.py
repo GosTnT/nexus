@@ -1,7 +1,8 @@
+import os
 import time
 import subprocess
 import time
-
+from typing import Optional
 from Scripts.bottle import error
 
 from .utils import Utils
@@ -9,16 +10,17 @@ from .account import Account
 import requests
 from .logger_cfg import logger
 from .process import CommandLine, Process
-from .client_manager import RiotClientManager
 import urllib3
-from threading import Thread
-import os
-from dotenv import load_dotenv
+
 import json
 from .lcu_connector import start_connector
 urllib3.disable_warnings()
-load_dotenv()
 
+
+class ClientDict:
+    def __init__(self, token: str, port: int):
+        self.token = token
+        self.port = port
 class Request():
     def __init__(self):
         self.base_url = "https://127.0.0.1"  # Corrigido o endereço IP 
@@ -37,91 +39,83 @@ class Request():
 
 
 class RiotClient():
-    def __init__(self,login_credentials,riot_client_manager):
-        self.login_credentials = login_credentials
+    def __init__(self):
         self.request = Request()
-        self.riot_client_manager = riot_client_manager
+
         self.process = Process()
         self.command_line = CommandLine()
-    
-   
-#
-    def open():
-        args = r'C:\Riot Games\Riot Client\RiotClientServices.exe --allow-multiple-clients --launch-product=league_of_legends --launch-patchline=live'
-        process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
-        # Wait for a short period to allow the process to start
-        time.sleep(5)
+    def open(self):
+        exe_path = r'C:\Riot Games\Riot Client\RiotClientServices.exe'
+        try:
+            # Use subprocess for more control
+            process = subprocess.Popen(exe_path)
+            exit_code = process.wait()
 
-        stdout, stderr = process.communicate()
+            if exit_code == 0:
+                print("League of Legends opened successfully.")
+            else:
+                print(f"Failed to open League of Legends with exit code {exit_code}.")
 
-        if process.returncode == 0 and b'Error' not in stderr and b'Error' not in stdout:
-            logger.info("League of Legends opened successfully.")
-            return True
-        else:
-            logger.error("Failed to open League of Legends.")
-            logger.error(f"stdout: {stdout.decode('utf-8')}")
-            logger.error(f"stderr: {stderr.decode('utf-8')}")
-            return False
+        except FileNotFoundError:
+            print(f"The .exe file '{exe_path}' was not found.")
+        except PermissionError:
+            print(f"Permission denied to open '{exe_path}'.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
-    def is_open(self):
-        while True:
-            processes = self.process.get_riot_client()
-            for proc in processes:
-                cmdline = " ".join(proc["cmdline"])
-                token = self.command_line.get_token(cmdline)
-                port = self.command_line.get_port(cmdline)
-                if port and token:
-                    if not self.riot_client_manager.client_exists(port=port):
-                        self.riot_client_manager.add(port=port,token=token)
+
+
+    def is_open(self) -> Optional[ClientDict]:
+        processes = self.process.get_riot_client()
+        for proc in processes:
+            cmdline = " ".join(proc["cmdline"])
+            token = self.command_line.get_token(cmdline)
+            port = self.command_line.get_port(cmdline)
+            if port and token:
+                return ClientDict(token, port)
+        return None
+
             
-    def login(self, client):
+    def login(self, client,login_credentials):
         endpoint = "rso-auth/v1/session/credentials"
         port = client.port
         token = client.token
         if port and token:
-            self.request.put(port=port, token=token, endpoint=endpoint, body=self.login_credentials)
-            self.riot_client_manager.remove(port=port)
+            self.request.put(port=port, token=token, endpoint=endpoint, body=login_credentials)
         else:
             logger.error(f"login doenst receive port or token {port,token}")
-    def start(self):
-        time.sleep(1)
-        if self.riot_client_manager.is_available():
-            client = self.riot_client_manager.get_next_free_client()
-            self.login(client)
-            return
-        if self.open():
-            while not self.riot_client_manager.is_available():
-                time.sleep(1)
-                pass
-            client = self.riot_client_manager.get_next_free_client()
-            self.login(client)
-            return
-        raise 'league didn"t open sucessefully'
+
 
 
 def start_app():
     accounts = Account()
-    riot_manager = RiotClientManager()
-    
-    riot = RiotClient(login_credentials="a",riot_client_manager=riot_manager)
-    client_ready = Thread(target=riot.is_open,daemon=True)
-    client_ready.start()
-    
-    for account in accounts.get():
-        riot_client = RiotClient(login_credentials=account,riot_client_manager=riot_manager)
-        client_open_thread = Thread(target=riot_client.start,name=f"client_open{account}",daemon=True)
-        client_open_thread.start()
-    
-    
-    
-        
-    connector_thread = Thread(target=start_connector, name="connector_listening",daemon=True)
-    connector_thread.start()
- 
-    while True:
-        time.sleep(1)
-        
+
+    riot_client= RiotClient()
+
+    account_list = accounts.get()
+    if account_list is None:
+        raise 'No accounts provided'
+    first_account = account_list[0]
+    riot_credentials = riot_client.is_open()
+    print('port:',riot_credentials.port,"token:",riot_credentials.token)
+    if riot_credentials is None:
+        raise 'no client opened'
+    riot_client.login(riot_credentials,first_account)
+
+
+
+
+
+
+
+    # Start the connector (previously in a separate thread)
+    # start_connector()
+
+    # Replace the infinite loop with a single-threaded version
+
+
+
 if __name__ == "__main__":
     start_app()
     
